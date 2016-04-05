@@ -1,4 +1,7 @@
 <?php
+
+namespace Margo\Entity;
+
 /**
  * Created by PhpStorm.
  * User: Dinam

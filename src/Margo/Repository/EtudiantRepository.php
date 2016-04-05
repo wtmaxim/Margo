@@ -3,7 +3,7 @@
 namespace Margo\Repository;
 
 use Doctrine\DBAL\Connection;
-use Margo\Entity\Etudiant;
+use Margo\Entity\Student;
 
 /**
  * Artist repository
@@ -28,7 +28,7 @@ class EtudiantRepository implements RepositoryInterface
     public function save($etudiant)
     {
         $etudiantData = array(
-            'nom' => $etudiant->getNome(),
+            'nom' => $etudiant->getNom(),
             'prenom' => $etudiant->getPrenom(),
             'classe' => $etudiant->getClasse(),
         );
