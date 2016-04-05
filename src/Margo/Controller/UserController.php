@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicBox\Controller;
+namespace Margo\Controller;
 
 use Margo\Entity\User;
 use Margo\Form\Type\UserType;
