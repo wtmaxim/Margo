@@ -57,6 +57,4 @@ class Category
         $this->categName = $categName;
     }
 
-
-
 }
