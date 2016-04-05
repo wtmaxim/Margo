@@ -3,9 +3,9 @@
 // Register route converters.
 // Each converter needs to check if the $id it received is actually a value,
 // as a workaround for https://github.com/silexphp/Silex/pull/768.
-$app['controllers']->convert('eleve', function ($id) use ($app) {
+$app['controllers']->convert('etudiant', function ($id) use ($app) {
     if ($id) {
-        return $app['repository.artist']->find($id);
+        return $app['repository.etudiant']->find($id);
     }
 });
 $app['controllers']->convert('prof', function ($id) use ($app) {
@@ -35,14 +35,14 @@ $app->get('/admin', 'Margo\Controller\AdminController::indexAction')
     ->bind('admin');
 
 // Admin route eleve
-$app->get('/admin/eleves', 'Margo\Controller\AdminEleveController::indexAction')
-    ->bind('admin_eleves');
-$app->match('/admin/eleve/add', 'Margo\Controller\AdminEleveController::addAction')
-    ->bind('admin_eleve_add');
-$app->match('/admin/eleves/{eleve}/edit', 'Margo\Controller\AdminEleveController::editAction')
-    ->bind('admin_eleve_edit');
-$app->match('/admin/eleves/{eleve}/delete', 'Margo\Controller\AdminEleveController::deleteAction')
-    ->bind('admin_eleve_delete');
+$app->get('/admin/etudiants', 'Margo\Controller\AdminEtudiantController::indexAction')
+    ->bind('admin_etudiants');
+$app->match('/admin/etudiant/add', 'Margo\Controller\AdminEtudiantController::addAction')
+    ->bind('admin_etudiant_add');
+$app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\AdminEtudiantController::editAction')
+    ->bind('admin_etudiant_edit');
+$app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\AdminEtudiantController::deleteAction')
+    ->bind('admin_etudiant_delete');
 
 $app->get('/admin/profs', 'Margo\Controller\AdminProfController::indexAction')
     ->bind('admin_profs');
