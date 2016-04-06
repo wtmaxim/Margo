@@ -14,8 +14,22 @@ header {
     background-image: url("../img/head.png");
     height: 80px;
     width: 100%;
-    z-index: 999;
+    z-index: 999
 }
+    header .logo {
+        float: left;
+    }
+    header .logo img {
+        height: 75px;
+        margin-left: 5%
+    }
+    
+    header .title {
+        float: left;
+        line-height: 80px;
+        margin-left: 5%;
+        font-size: 20px
+    }
 
 /**
 * NAVIGATION
@@ -28,4 +42,31 @@ nav {
     z-index: 99;
     top: 80px;
     background-image: url("../img/nav.png");
+    padding-top: 4%;
+    text-align: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
 }
+    nav .title {
+        font-size: 25px;
+        color: rgba(0, 0, 0, 0.5);
+        border-top: 1px solid rgba(0, 0, 0, 0.5);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        padding: 10px 0;
+    }
+
+    nav .menu {
+        margin-top: 50px;
+    }
+
+    nav a {
+        color: rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+    }
+
+    nav .etu {
+        padding: 30px 0;
+    }
+
+    nav .prof {
+        padding: 30px 0;
+    }
