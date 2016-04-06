@@ -13,7 +13,7 @@ class Student
     private $studentId;
     private $name;
     private $firstName;
-    private $category;
+    private $idCategory;
 
     /**
      * Student constructor.
@@ -22,12 +22,12 @@ class Student
      * @param $firstName
      * @param $category
      */
-    public function __construct($name, $studentId, $firstName, $category)
+    public function __construct($name, $studentId, $firstName, $idCategory)
     {
         $this->name = $name;
         $this->studentId = $studentId;
         $this->firstName = $firstName;
-        $this->category = $category;
+        $this->idCategory = $idCategory;
     }
 
     /**
@@ -92,6 +92,22 @@ class Student
     public function setClass($class)
     {
         $this->class = $class;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdCategory()
+    {
+        return $this->idCategory;
+    }
+
+    /**
+     * @param mixed $idCategory
+     */
+    public function setIdCategory($idCategory)
+    {
+        $this->idCategory = $idCategory;
     }
 
 

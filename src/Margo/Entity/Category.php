@@ -13,16 +13,34 @@ class Category
 {
     private $categId;
     private $categName;
+    private $idFormation;
 
     /**
      * Category constructor.
      * @param $categName
      * @param $categId
      */
-    public function __construct($categName, $categId)
+    public function __construct($categName, $categId, $idFormation)
     {
         $this->categName = $categName;
         $this->categId = $categId;
+        $this->idFormation = $idFormation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdFormation()
+    {
+        return $this->idFormation;
+    }
+
+    /**
+     * @param mixed $idFormation
+     */
+    public function setIdFormation($idFormation)
+    {
+        $this->idFormation = $idFormation;
     }
 
     /**

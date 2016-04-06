@@ -13,6 +13,7 @@ class Teacher
     private $teacherId;
     private $teacherName;
     private $teacherFirstName;
+    private $idSubject;
 
     /**
      * Teacher constructor.
@@ -20,11 +21,28 @@ class Teacher
      * @param $teacherName
      * @param $teacherFirstName
      */
-    public function __construct($teacherId, $teacherName, $teacherFirstName)
+    public function __construct($teacherId, $teacherName, $teacherFirstName,$idSubject)
     {
         $this->teacherId = $teacherId;
         $this->teacherName = $teacherName;
         $this->teacherFirstName = $teacherFirstName;
+        $this->idSubject= $idSubject;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdSubject()
+    {
+        return $this->idSubject;
+    }
+
+    /**
+     * @param mixed $idSubject
+     */
+    public function setIdSubject($idSubject)
+    {
+        $this->idSubject = $idSubject;
     }
 
     /**
