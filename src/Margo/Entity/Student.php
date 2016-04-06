@@ -20,7 +20,7 @@ class Student
      * @param $name
      * @param $studentId
      * @param $firstName
-     * @param $class
+     * @param $category
      */
     public function __construct($name, $studentId, $firstName, $category)
     {
