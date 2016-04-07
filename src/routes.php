@@ -44,13 +44,13 @@ $app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\StudentControl
 $app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\StudentController::deleteAction')
     ->bind('admin_etudiant_delete');
 
-$app->get('/admin/teacher', 'Margo\Controller\TeacherController::indexAction')
-    ->bind('admin_teacher');
+$app->get('/admin/teachers', 'Margo\Controller\TeacherController::indexAction')
+    ->bind('admin_teachers');
 $app->match('/admin/teacher/add', 'Margo\Controller\AdminProfController::addAction')
     ->bind('admin_teacher_add');
 $app->match('/admin/teacher/{teacher}/edit', 'Margo\Controller\AdminProfController::editAction')
     ->bind('admin_teacher_edit');
-$app->match('/admin/teacher/{teacherId}/delete', 'Margo\Controller\TeacherController::deleteAction')
+$app->match('/admin/teacher/{teacher}/delete', 'Margo\Controller\TeacherController::deleteAction')
     ->bind('admin_teacher_delete');
 
 $app->get('/admin/users', 'Margo\Controller\AdminUserController::indexAction')

@@ -7,24 +7,22 @@
         <tr>
             <th> {{ 'Nom' }} </th>
             <th> {{ 'Prenom' }} </th>
-            <th> {{ 'Classe' }} </th>
-            <th> {{ 'Action' }} </th>
-
+            <th> {{ 'Matière' }} </th>
+            <th> {{ 'Action' }}</th>
         </tr>
         </thead>
         <tbody>
         {% for teacher in teachers %}
             <tr>
-                <td> {{ teacher.teacherName }} </td>
-                <td> {{ teacher.teacherFirstName }} </td>
-                <td> {{ teacher.idSubject}} </td>
+                <td> {{ teacher.name }} </td>
+                <td> {{ teacher.firstName }} </td>
                 <td>
-                    <a href="{{ path('admin_teacher_delete', {'teacher': teacher}) }}">delete</a>
+                    <a href="{{ path('admin_teacher_delete', {'teacher': teacher.id}) }}">delete</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td>{{ '0 professeur.' }}</td>
+                <td>{{ '0 etudiant.' }}</td>
             </tr>
         {% endfor %}
         </tbody>

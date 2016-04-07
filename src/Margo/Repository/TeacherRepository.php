@@ -3,10 +3,11 @@
 namespace Margo\Repository;
 
 use Doctrine\DBAL\Connection;
+
 use Margo\Entity\Teacher;
 
 /**
- * teacher repository
+ * Artist repository
  */
 class TeacherRepository implements RepositoryInterface
 {
@@ -15,78 +16,81 @@ class TeacherRepository implements RepositoryInterface
      */
     protected $db;
 
-    public function __construct(Connection $db)
+    protected $subjectRepository;
+
+    public function __construct(Connection $db, $subjectRepository)
     {
         $this->db = $db;
+        $this->subjectRepository = $subjectRepository;
     }
 
     /**
-     * Saves the teacher to the database.
+     * Saves the etudiant to the database.
      *
-     * @param \Margo\Entity\Teacher $teacher
+     * @param \Margo\Entity\Etudiant $etudiant
      */
-    public function save($teacher)
+    public function save($etudiant)
     {
-        $teachersData = array(
-            'name' => $teacher->getNom(),
-            'firstname' => $teacher->getPrenom(),
-            'idSubject' => $teacher->getIdSubject(),
+        $etudiantData = array(
+            'name' => $etudiant->getName(),
+            'firstname' => $etudiant->getFirstName(),
+            'idCategory' => $etudiant->getIdCategory(),
         );
 
-        if ($teacher->getId()) {
+        if ($etudiant->getStudentId()) {
 
-            $this->db->update('etudiants', $teachersData, array('teacher' => $teacher->getId()));
+            $this->db->update('student', $etudiantData, array('id' => $etudiant->getStudentId()));
         }
         else {
-            $this->db->insert('teacher', $teachersData);
+            $this->db->insert('student', $etudiantData);
             $id = $this->db->lastInsertId();
-            $teacher->setId($id);
+            $etudiant->setStudentId($id);
         }
     }
 
     /**
-     * Deletes teacher.
+     * Deletes etudiant.
      *
      * @param \Margo\Entity\Teacher $teacher
      */
     public function delete($teacher)
     {
-        return $this->db->delete('teacher', array('id' => $teacher->getTeacherId()));
+        return $this->db->delete('teacher', array('id' => $teacher->getId()));
     }
 
     /**
-     * Returns the total number of Teachers.
+     * Returns the total number of etudiant.
      *
-     * @return integer The total number of teachers.
+     * @return integer The total number of etudiant.
      */
     public function getCount() {
-        return $this->db->fetchColumn('SELECT COUNT(id) FROM teacher');
+        return $this->db->fetchColumn('SELECT COUNT(id) FROM student');
     }
 
     /**
-     * Returns a teacher matching the supplied id.
+     * Returns an etudiant matching the supplied id.
      *
      * @param integer $id
      *
-     * @return \Margo\Entity\Teacher|false An entity object if found, false otherwise.
+     * @return \Margo\Entity\Etudiant|false An entity object if found, false otherwise.
      */
     public function find($id)
     {
-        $teachersData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
-        return $teachersData ? $this->buildTeacher($teachersData) : FALSE;
+        $teacherData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
+        return $teacherData ? $this->buildTeacher($teacherData) : FALSE;
     }
 
     /**
-     * Returns a collection of teacher, sorted by name.
+     * Returns a collection of etudiant, sorted by name.
      *
      * @param integer $limit
-     *   The number of $teacher to return.
+     *   The number of $etudiant to return.
      * @param integer $offset
-     *   The number of $teacher to skip.
+     *   The number of $etudiant to skip.
      * @param array $orderBy
      *   Optionally, the order by info, in the $column => $direction format.
      *
-     * @return array A collection of $teacher, keyed by $teacher id.
+     * @return array A collection of $etudiant, keyed by $etudiant id.
      */
     public function findAll($limit, $offset = 0, $orderBy = array())
     {
@@ -113,20 +117,22 @@ class TeacherRepository implements RepositoryInterface
     }
 
     /**
-     * Instantiates an $teacger entity and sets its properties using db data.
+     * Instantiates an $etudiant entity and sets its properties using db data.
      *
-     * @param array $teacherData
+     * @param array $etudiantData
      *   The array of db data.
      *
-     * @return \Margo\Entity\Teacher
+     * @return \Margo\Entity\Etudiant
      */
     protected function buildTeacher($teacherData)
     {
+
+
+
         $teacher = new Teacher();
-        $teacher->setTeacherId($teacherData['id']);
-        $teacher->setTeacherFirstName($teacherData['firstName']);
-        $teacher->setTeacherName($teacherData['name']);
-        $teacher->setIdSubject($teacherData['idSubject']);
+        $teacher->setId($teacherData['id']);
+        $teacher->setName($teacherData['name']);
+        $teacher->setFirstName($teacherData['firstName']);
         return $teacher;
     }
 }

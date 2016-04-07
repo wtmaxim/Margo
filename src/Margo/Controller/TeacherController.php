@@ -3,6 +3,7 @@
 namespace Margo\Controller;
 
 use Margo\Entity\Teacher;
+use Margo\Form\Type\StudentType;
 use Silex\Application;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,37 +16,60 @@ class TeacherController
     {
         // Perform pagination logic.
         $limit = 10;
-        $total = $app['repository.Teacher']->getCount();
+        $total = $app['repository.teacher']->getCount();
         $numPages = ceil($total / $limit);
         $currentPage = $request->query->get('page', 1);
         $offset = ($currentPage - 1) * $limit;
-        $teachers = $app['repository.Teacher']->findAll($limit, $offset);
+        $teachers = $app['repository.teacher']->findAll($limit, $offset);
         $data = array(
             'teachers' => $teachers,
             'currentPage' => $currentPage,
             'numPages' => $numPages,
-            'here' => $app['url_generator']->generate('admin_teacher'),
+            'here' => $app['url_generator']->generate('admin_teachers'),
         );
         return $app['twig']->render('teacher.html.twig', $data);
     }
+
     public function addAction(Request $request, Application $app)
     {
-        $teacher = new Teacher();
-        $form = $app['form.factory']->create(new StudentType(), $teacher);
+        $etudiant = new Student();
+        $form = $app['form.factory']->create(new StudentType(), $etudiant);
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
-                $app['repository.Teacher']->save($teacher);
-                $message = 'The teacher' . $teacher->getTeacherName() . ' has been saved.';
+                $app['repository.etudiant']->save($etudiant);
+                $message = 'The student ' . $etudiant->getName() . ' has been saved.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
-                $redirect = $app['url_generator']->generate('admin_artist_edit', array('artist' => $teacher->getId()));
+                $redirect = $app['url_generator']->generate('admin_etudiant_add', array('etudiant' => $etudiant->getStudentId()));
                 return $app->redirect($redirect);
             }
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Add new teacher',
+            'title' => 'Add new artist',
+        );
+        return $app['twig']->render('form.html.twig', $data);
+    }
+
+    public function editAction(Request $request, Application $app)
+    {
+        $etudiant = $request->attributes->get('etudiant');
+        if (!$etudiant) {
+            $app->abort(404, 'The requested etudiant was not found.');
+        }
+        $form = $app['form.factory']->create(new StudentType(), $etudiant);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $app['repository.etudiant']->save($etudiant);
+                $message = 'The student has been saved.';
+                $app['session']->getFlashBag()->add('success', $message);
+            }
+        }
+        $data = array(
+            'form' => $form->createView(),
+            'title' => 'Edit student',
         );
         return $app['twig']->render('form.html.twig', $data);
     }
@@ -53,13 +77,11 @@ class TeacherController
     public function deleteAction(Request $request, Application $app)
     {
         $teacher = $request->attributes->get('teacher');
-        var_dump($teacher);
-
         if (!$teacher) {
-            $app->abort(404, 'The requested teacher was not found.');
+            $app->abort(404, 'The requested student was not found.');
         }
-        $app['repository.Teacher']->delete($teacher);
-        return $app->redirect($app['url_generator']->generate('admin_teacher'));
-
+        $app['repository.teacher']->delete($teacher);
+        return $app->redirect($app['url_generator']->generate('admin_teachers'));
     }
+
 }

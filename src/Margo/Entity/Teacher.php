@@ -2,27 +2,67 @@
 
 namespace Margo\Entity;
 
-/**
- * Created by PhpStorm.
- * User: Dinam
- * Date: 05-Apr-16
- * Time: 2:56 PM
- */
 class Teacher
 {
-    private $teacherId;
-    private $teacherName;
-    private $teacherFirstName;
+    private $id;
+    private $firstName;
+    private $name;
     private $idSubject;
 
     /**
      * Teacher constructor.
-     * @param $teacherId
-     * @param $teacherName
-     * @param $teacherFirstName
      */
     public function __construct()
     {
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param mixed $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
     }
 
     /**
@@ -40,55 +80,6 @@ class Teacher
     {
         $this->idSubject = $idSubject;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getTeacherId()
-    {
-        return $this->teacherId;
-    }
-
-    /**
-     * @param mixed $teacherId
-     */
-    public function setTeacherId($teacherId)
-    {
-        $this->teacherId = $teacherId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTeacherName()
-    {
-        return $this->teacherName;
-    }
-
-    /**
-     * @param mixed $teacherName
-     */
-    public function setTeacherName($teacherName)
-    {
-        $this->teacherName = $teacherName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTeacherFirstName()
-    {
-        return $this->teacherFirstName;
-    }
-
-    /**
-     * @param mixed $teacherFirstName
-     */
-    public function setTeacherFirstName($teacherFirstName)
-    {
-        $this->teacherFirstName = $teacherFirstName;
-    }
-
 
 
 }
