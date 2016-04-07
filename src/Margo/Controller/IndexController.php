@@ -2,8 +2,6 @@
 
 namespace Margo\Controller;
 
-
-
 use Silex\Application;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;

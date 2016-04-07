@@ -35,13 +35,13 @@ $app->get('/admin', 'Margo\Controller\AdminController::indexAction')
     ->bind('admin');
 
 // Admin route eleve
-$app->get('/admin/etudiants', 'Margo\Controller\AdminEtudiantController::indexAction')
+$app->get('/admin/etudiants', 'Margo\Controller\StudentController::indexAction')
     ->bind('admin_etudiants');
-$app->match('/admin/etudiant/add', 'Margo\Controller\AdminEtudiantController::addAction')
+$app->match('/admin/etudiant/add', 'Margo\Controller\StudentController::addAction')
     ->bind('admin_etudiant_add');
-$app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\AdminEtudiantController::editAction')
+$app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\StudentController::editAction')
     ->bind('admin_etudiant_edit');
-$app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\AdminEtudiantController::deleteAction')
+$app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\StudentController::deleteAction')
     ->bind('admin_etudiant_delete');
 
 $app->get('/admin/profs', 'Margo\Controller\AdminProfController::indexAction')

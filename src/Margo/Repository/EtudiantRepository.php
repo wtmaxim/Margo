@@ -28,9 +28,9 @@ class EtudiantRepository implements RepositoryInterface
     public function save($etudiant)
     {
         $etudiantData = array(
-            'nom' => $etudiant->getNom(),
-            'prenom' => $etudiant->getPrenom(),
-            'classe' => $etudiant->getClasse(),
+            'name' => $etudiant->getNom(),
+            'firstname' => $etudiant->getPrenom(),
+            'idcategory' => $etudiant->getClasse(),
         );
 
         if ($etudiant->getId()) {
@@ -60,7 +60,7 @@ class EtudiantRepository implements RepositoryInterface
      * @return integer The total number of etudiant.
      */
     public function getCount() {
-        return $this->db->fetchColumn('SELECT COUNT(eleve_id) FROM eleves');
+        return $this->db->fetchColumn('SELECT COUNT(id) FROM student');
     }
 
     /**
@@ -92,22 +92,22 @@ class EtudiantRepository implements RepositoryInterface
     {
         // Provide a default orderBy.
         if (!$orderBy) {
-            $orderBy = array('nom' => 'ASC');
+            $orderBy = array('name' => 'ASC');
         }
 
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
             ->select('e.*')
-            ->from('etudiants', 'e')
+            ->from('student', 'e')
             ->setMaxResults($limit)
             ->setFirstResult($offset)
-            ->orderBy('a.' . key($orderBy), current($orderBy));
+            ->orderBy(key($orderBy), current($orderBy));
         $statement = $queryBuilder->execute();
         $etudiantsData = $statement->fetchAll();
 
         $etudiants = array();
         foreach ($etudiantsData as $etudiantData) {
-            $etudiantId = $etudiantData['etudiant_id'];
+            $etudiantId = $etudiantData['id'];
             $etudiants[$etudiantId] = $this->buildEtudiant($etudiantData);
         }
         return $etudiants;
@@ -123,11 +123,11 @@ class EtudiantRepository implements RepositoryInterface
      */
     protected function buildEtudiant($etudiantData)
     {
-        $etudiant = new Etudiant();
-        $etudiant->setId($etudiantData['etudiant_id']);
-        $etudiant->setName($etudiantData['nom']);
-        $etudiant->setPrenom($etudiantData['prenom']);
-        $etudiant->setClasse($etudiantData['classe']);
+        $etudiant = new Student();
+        $etudiant->setStudentId($etudiantData['id']);
+        $etudiant->setName($etudiantData['name']);
+        $etudiant->setFirstName($etudiantData['firstname']);
+        $etudiant->setIdCategory($etudiantData['idCategory']);
         return $etudiant;
     }
 }
