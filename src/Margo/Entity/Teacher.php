@@ -21,12 +21,8 @@ class Teacher
      * @param $teacherName
      * @param $teacherFirstName
      */
-    public function __construct($teacherId, $teacherName, $teacherFirstName,$idSubject)
+    public function __construct()
     {
-        $this->teacherId = $teacherId;
-        $this->teacherName = $teacherName;
-        $this->teacherFirstName = $teacherFirstName;
-        $this->idSubject= $idSubject;
     }
 
     /**

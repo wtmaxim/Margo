@@ -44,7 +44,7 @@ $app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\StudentControl
 $app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\StudentController::deleteAction')
     ->bind('admin_etudiant_delete');
 
-$app->get('/admin/profs', 'Margo\Controller\AdminProfController::indexAction')
+$app->get('/admin/profs', 'Margo\Controller\TeacherController::indexAction')
     ->bind('admin_profs');
 $app->match('/admin/profs/add', 'Margo\Controller\AdminProfController::addAction')
     ->bind('admin_profs_add');

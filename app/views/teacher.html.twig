@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'account' %}
+
+{% block content %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> {{ 'Nom' }} </th>
+            <th> {{ 'Prenom' }} </th>
+            <th> {{ 'Classe' }} </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for teacher in teachers %}
+            <tr>
+                <td> {{ teacher.teacherName }} </td>
+                <td> {{ teacher.teacherFirstName }} </td>
+                <td> {{ teacher.idSubject}} </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ '0 professeur.' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
