@@ -38,7 +38,7 @@ class StudentController
             $form->bind($request);
             if ($form->isValid()) {
                 $app['repository.etudiant']->save($etudiant);
-                $message = 'The student ' . $etudiant->getName() . ' has been saved.';
+                $message = 'L\' étudiant ' . $etudiant->getName() . ' à été ajouté.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
                 $redirect = $app['url_generator']->generate('admin_etudiant_add', array('etudiant' => $etudiant->getStudentId()));
@@ -47,7 +47,7 @@ class StudentController
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Add new artist',
+            'title' => 'Ajout d\'un étudiant',
         );
         return $app['twig']->render('form.html.twig', $data);
     }
@@ -56,20 +56,20 @@ class StudentController
     {
         $etudiant = $request->attributes->get('etudiant');
         if (!$etudiant) {
-            $app->abort(404, 'The requested etudiant was not found.');
+            $app->abort(404, 'La requête étudiant n\a pas été trouvé.');
         }
         $form = $app['form.factory']->create(new StudentType(), $etudiant);
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
                 $app['repository.etudiant']->save($etudiant);
-                $message = 'The student has been saved.';
+                $message = 'L\étudiant à été modifié !.';
                 $app['session']->getFlashBag()->add('success', $message);
             }
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Edit student',
+            'title' => 'Edition d\'un étudiant',
         );
         return $app['twig']->render('form.html.twig', $data);
     }

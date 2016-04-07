@@ -58,7 +58,7 @@ $app['repository.category'] = $app->share(function ($app) {
 $app->before(function (Request $request) use ($app) {
     $protected = array(
         '/admin/' => 'ROLE_ADMIN',
-        '/me' => 'ROLE_USER',
+        '/etudiant' => 'ROLE_USER',
     );
     $path = $request->getPathInfo();
     foreach ($protected as $protectedPath => $role) {

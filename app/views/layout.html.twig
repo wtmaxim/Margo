@@ -3,7 +3,10 @@
     <meta charset="utf-8">
     <title>{{ 'Margo' }}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
     <link href="{{ app.request.basepath }}/css/normalize.css" rel="stylesheet" type='text/css'>
+    <link href="{{ app.request.basepath }}/css/alert.css" rel="stylesheet" type='text/css'>
+    <link href="{{ app.request.basepath }}/css/button.css" rel="stylesheet" type='text/css'>
     <link href="{{ app.request.basepath }}/css/style.css" rel="stylesheet" type='text/css'>
 </head>
 <body>
@@ -13,7 +16,8 @@
         <img src="{{ app.request.basepath }}/img/logo-red.png">
     </div>
     <div class="title">
-        Accueil
+        {% block title %}
+        {% endblock %}
     </div>
 </header>
 

@@ -1,0 +1,38 @@
+.btn {
+    padding: 20px 10px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.btn-table {
+    border-radius: 5px;
+    color: black;
+    padding: 10px 10px;
+}
+
+.btn-del {
+    border: 1px solid #c0392b;
+    transition-duration: 1s;
+}
+.btn-del:hover {
+    color: #FFFFFF;
+    background-color: #c0392b;
+    transition-duration: 1s;
+}
+.btn-edit {
+    border: 1px solid #27ae60;
+    transition-duration: 1s;
+}
+.btn-edit:hover {
+    color: #FFFFFF;
+    background-color: #27ae60;
+    transition-duration: 1s;
+}
+.btn-add {
+    background-color: #2980b9;
+    transition-duration: 1s;
+}
+.btn-add:hover {
+    background-color: #3498db;
+    transition-duration: 1s;
+}

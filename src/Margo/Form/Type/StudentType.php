@@ -13,15 +13,27 @@ class StudentType extends AbstractType
     {
         $builder
             ->add('name', 'text', array(
-                'constraints' => new Assert\NotBlank()
+                'label' => ' ',
+                'constraints' => new Assert\NotBlank(),
+                'attr' => array(
+                    'placeholder' => 'Nom',
+                )
             ))
             ->add('firstName', 'text', array(
-                'constraints' => new Assert\NotBlank()
+                'label' => ' ',
+                'constraints' => new Assert\NotBlank(),
+                'attr' => array(
+                    'placeholder' => 'Prénom',
+                )
             ))
             ->add('idCategory', 'text', array(
-                'constraints' => new Assert\NotBlank()
+                'label' => ' ',
+                'constraints' => new Assert\NotBlank(),
+                'attr' => array(
+                    'placeholder' => 'Classe',
+                )
             ))
-            ->add('save', 'submit');
+            ->add('Enregistrer', 'submit');
     }
 
     public function getName()

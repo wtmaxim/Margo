@@ -73,6 +73,64 @@ nav {
 * section
 */
 section {
-    padding-top: 100px;
+    padding-top: 130px;
     padding-left: 25%;
+}
+
+/**
+* Table
+*/
+table {
+    margin-top: 5%;
+    border-collapse: collapse;
+    width: 95%;
+    margin-bottom: 5%;
+}
+thead {
+    background-color: #2980b9;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+tbody, tr {
+    border: 1px solid grey;
+}
+td {
+    text-align: center;
+    padding: 50px 0;
+}
+th {
+    padding: 20px 0;
+}
+
+/**
+* Forms
+*/
+form {
+    text-align: center;
+    width: 100%;
+}
+.form-title {
+    background-color: #7f8c8d;
+    width: 90%;
+    color: white;
+    padding: 20px 10px;
+    font-family: 'Roboto', sans-serif;
+}
+input, button {
+    padding: 20px 10px;
+    font-size: 20px;
+    border: 1px solid #e1e1e1;
+}
+input {
+    color: #c1c1c1;
+    background-color: #f1f1f1;
+    margin: 0 auto;
+    width: 60%;
+    margin-top: 2%;
+}
+button {
+    background-color: #2c3e50;
+    color: #f1f1f1;
+    width: 80%;
+    margin-top: 2%;
 }

@@ -24,6 +24,8 @@ $app['controllers']->convert('user', function ($id) use ($app) {
 $app->get('/', 'Margo\Controller\IndexController::indexAction')
     ->bind('homepage');
 
+$app->get('/student', 'Margo\Controller\StudentController::indexAction');
+
 // Login route
 $app->match('/login', 'Margo\Controller\UserController::loginAction')
     ->bind('login');

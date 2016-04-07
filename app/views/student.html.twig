@@ -1,8 +1,12 @@
 {% extends 'layout.html.twig' %}
 {% set active = 'account' %}
 
+{% block title %}
+   Administration - Etudiants
+{% endblock %}
+
 {% block content %}
-   <a href="{{ path('admin_etudiant_add') }}">{{ 'Ajouter un élève' }}</a>
+   <a href="{{ path('admin_etudiant_add') }}" class="btn btn-add">{{ 'Ajouter un étudiant' }}</a>
    <table class="table table-hover">
       <thead>
       <tr>
@@ -19,8 +23,8 @@
             <td> {{ etudiant.firstName }} </td>
             <td> {{ etudiant.category.categName }} </td>
             <td>
-               <a href="{{ path('admin_etudiant_delete', {'etudiant': etudiant.studentId}) }}">delete</a>
-               <a href="{{ path('admin_etudiant_edit', {'etudiant': etudiant.studentId}) }}">Edit</a>
+               <a href="{{ path('admin_etudiant_delete', {'etudiant': etudiant.studentId}) }}" class="btn btn-table btn-del">Supprimer</a>
+               <a href="{{ path('admin_etudiant_edit', {'etudiant': etudiant.studentId}) }}" class="btn btn-table btn-edit">Editer</a>
             </td>
          </tr>
       {% else %}
