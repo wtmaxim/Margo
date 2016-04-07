@@ -2,7 +2,8 @@
 
 namespace Margo\Controller;
 
-use Margo\Entity;
+use Margo\Entity\Student;
+use Margo\Form\Type\StudentType;
 use Silex\Application;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,21 +33,43 @@ class StudentController
     public function addAction(Request $request, Application $app)
     {
         $etudiant = new Student();
-        $form = $app['form.factory']->create(new StudentType(), $artist);
+        $form = $app['form.factory']->create(new StudentType(), $etudiant);
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
-                $app['repository.artist']->save($artist);
-                $message = 'The artist ' . $artist->getName() . ' has been saved.';
+                $app['repository.etudiant']->save($etudiant);
+                $message = 'The student ' . $etudiant->getName() . ' has been saved.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
-                $redirect = $app['url_generator']->generate('admin_artist_edit', array('artist' => $artist->getId()));
+                $redirect = $app['url_generator']->generate('admin_etudiant_add', array('etudiant' => $etudiant->getStudentId()));
                 return $app->redirect($redirect);
             }
         }
         $data = array(
             'form' => $form->createView(),
             'title' => 'Add new artist',
+        );
+        return $app['twig']->render('form.html.twig', $data);
+    }
+
+    public function editAction(Request $request, Application $app)
+    {
+        $etudiant = $request->attributes->get('etudiant');
+        if (!$etudiant) {
+            $app->abort(404, 'The requested etudiant was not found.');
+        }
+        $form = $app['form.factory']->create(new StudentType(), $etudiant);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $app['repository.etudiant']->save($etudiant);
+                $message = 'The student has been saved.';
+                $app['session']->getFlashBag()->add('success', $message);
+            }
+        }
+        $data = array(
+            'form' => $form->createView(),
+            'title' => 'Edit student',
         );
         return $app['twig']->render('form.html.twig', $data);
     }

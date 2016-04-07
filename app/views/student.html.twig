@@ -20,6 +20,7 @@
             <td> {{ etudiant.category.categName }} </td>
             <td>
                <a href="{{ path('admin_etudiant_delete', {'etudiant': etudiant.studentId}) }}">delete</a>
+               <a href="{{ path('admin_etudiant_edit', {'etudiant': etudiant.studentId}) }}">Edit</a>
             </td>
          </tr>
       {% else %}
