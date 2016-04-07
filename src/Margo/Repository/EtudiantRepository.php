@@ -31,19 +31,19 @@ class EtudiantRepository implements RepositoryInterface
     public function save($etudiant)
     {
         $etudiantData = array(
-            'name' => $etudiant->getNom(),
-            'firstname' => $etudiant->getPrenom(),
-            'category' => $etudiant->getCategory()->getId(),
+            'name' => $etudiant->getName(),
+            'firstname' => $etudiant->getFirstName(),
+            'idCategory' => $etudiant->getIdCategory(),
         );
 
-        if ($etudiant->getId()) {
+        if ($etudiant->getStudentId()) {
 
-            $this->db->update('etudiants', $etudiantData, array('etudiant_id' => $etudiant->getId()));
+            $this->db->update('student', $etudiantData, array('id' => $etudiant->getStudentId()));
         }
         else {
-            $this->db->insert('etudiants', $etudiantData);
+            $this->db->insert('student', $etudiantData);
             $id = $this->db->lastInsertId();
-            $etudiant->setId($id);
+            $etudiant->setStudentId($id);
         }
     }
 
