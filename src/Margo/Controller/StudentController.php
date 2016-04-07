@@ -29,4 +29,36 @@ class StudentController
         return $app['twig']->render('student.html.twig', $data);
     }
 
+    public function addAction(Request $request, Application $app)
+    {
+        $etudiant = new Student();
+        $form = $app['form.factory']->create(new StudentType(), $artist);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $app['repository.artist']->save($artist);
+                $message = 'The artist ' . $artist->getName() . ' has been saved.';
+                $app['session']->getFlashBag()->add('success', $message);
+                // Redirect to the edit page.
+                $redirect = $app['url_generator']->generate('admin_artist_edit', array('artist' => $artist->getId()));
+                return $app->redirect($redirect);
+            }
+        }
+        $data = array(
+            'form' => $form->createView(),
+            'title' => 'Add new artist',
+        );
+        return $app['twig']->render('form.html.twig', $data);
+    }
+
+    public function deleteAction(Request $request, Application $app)
+    {
+        $etudiant = $request->attributes->get('etudiant');
+        if (!$etudiant) {
+            $app->abort(404, 'The requested student was not found.');
+        }
+        $app['repository.etudiant']->delete($etudiant);
+        return $app->redirect($app['url_generator']->generate('admin_etudiants'));
+    }
+
 }

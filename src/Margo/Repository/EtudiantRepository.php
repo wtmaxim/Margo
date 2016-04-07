@@ -54,7 +54,7 @@ class EtudiantRepository implements RepositoryInterface
      */
     public function delete($etudiant)
     {
-        return $this->db->delete('etudiants', array('etudiant_id' => $etudiant->getId()));
+        return $this->db->delete('student', array('id' => $etudiant->getStudentId()));
     }
 
     /**
@@ -75,8 +75,8 @@ class EtudiantRepository implements RepositoryInterface
      */
     public function find($id)
     {
-        $etudiantData = $this->db->fetchAssoc('SELECT * FROM etudiants WHERE etudiant_id = ?', array($id));
-        return $etudiantData ? $this->buildEleve($etudiantData) : FALSE;
+        $etudiantData = $this->db->fetchAssoc('SELECT * FROM student WHERE id = ?', array($id));
+        return $etudiantData ? $this->buildEtudiant($etudiantData) : FALSE;
     }
 
     /**
@@ -126,7 +126,7 @@ class EtudiantRepository implements RepositoryInterface
     protected function buildEtudiant($etudiantData)
     {
 
-        $category = $this->categoryRepository->find($etudiantData['id']);
+        $category = $this->categoryRepository->find($etudiantData['idCategory']);
 
         $etudiant = new Student();
         $etudiant->setStudentId($etudiantData['id']);
