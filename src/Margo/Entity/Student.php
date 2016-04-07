@@ -14,6 +14,7 @@ class Student
     private $name;
     private $firstName;
     private $idCategory;
+    private $category;
 
     /**
      * Student constructor.
@@ -78,17 +79,17 @@ class Student
     /**
      * @return mixed
      */
-    public function getClass()
+    public function getCategory()
     {
-        return $this->class;
+        return $this->category;
     }
 
     /**
      * @param mixed $class
      */
-    public function setClass($class)
+    public function setCategory($category)
     {
-        $this->class = $class;
+        $this->category = $category;
     }
 
     /**

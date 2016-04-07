@@ -3,6 +3,7 @@
 namespace Margo\Repository;
 
 use Doctrine\DBAL\Connection;
+use Margo\Entity\Category;
 use Margo\Entity\Student;
 
 /**
@@ -14,10 +15,12 @@ class EtudiantRepository implements RepositoryInterface
      * @var \Doctrine\DBAL\Connection
      */
     protected $db;
+    protected $categoryRepository;
 
-    public function __construct(Connection $db)
+    public function __construct(Connection $db, $categoryRepository)
     {
         $this->db = $db;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -30,7 +33,7 @@ class EtudiantRepository implements RepositoryInterface
         $etudiantData = array(
             'name' => $etudiant->getNom(),
             'firstname' => $etudiant->getPrenom(),
-            'idcategory' => $etudiant->getClasse(),
+            'idcategory' => $etudiant->getId(),
         );
 
         if ($etudiant->getId()) {
@@ -122,11 +125,14 @@ class EtudiantRepository implements RepositoryInterface
      */
     protected function buildEtudiant($etudiantData)
     {
+
+        $category = $this->categoryRepository->find($etudiantData['id']);
+
         $etudiant = new Student();
         $etudiant->setStudentId($etudiantData['id']);
         $etudiant->setName($etudiantData['name']);
         $etudiant->setFirstName($etudiantData['firstName']);
-        $etudiant->setIdCategory($etudiantData['idCategory']);
+        $etudiant->setCategory($category);
         return $etudiant;
     }
 }

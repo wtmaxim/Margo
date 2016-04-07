@@ -2,5 +2,26 @@
 {% set active = 'account' %}
 
 {% block content %}
-   dfg
+   <table class="table table-hover">
+      <thead>
+      <tr>
+         <th> {{ 'Nom' }} </th>
+         <th> {{ 'Prenom' }} </th>
+         <th> {{ 'Classe' }} </th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for etudiant in etudiants %}
+         <tr>
+            <td> {{ etudiant.name }} </td>
+            <td> {{ etudiant.firstName }} </td>
+            <td> {{ etudiant.category.name }} </td>
+         </tr>
+      {% else %}
+         <tr>
+            <td>{{ '0 etudiant.' }}</td>
+         </tr>
+      {% endfor %}
+      </tbody>
+   </table>
 {% endblock %}
