@@ -104,7 +104,6 @@ class EtudiantRepository implements RepositoryInterface
             ->orderBy(key($orderBy), current($orderBy));
         $statement = $queryBuilder->execute();
         $etudiantsData = $statement->fetchAll();
-
         $etudiants = array();
         foreach ($etudiantsData as $etudiantData) {
             $etudiantId = $etudiantData['id'];
@@ -126,7 +125,7 @@ class EtudiantRepository implements RepositoryInterface
         $etudiant = new Student();
         $etudiant->setStudentId($etudiantData['id']);
         $etudiant->setName($etudiantData['name']);
-        $etudiant->setFirstName($etudiantData['firstname']);
+        $etudiant->setFirstName($etudiantData['firstName']);
         $etudiant->setIdCategory($etudiantData['idCategory']);
         return $etudiant;
     }

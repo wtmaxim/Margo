@@ -22,12 +22,9 @@ class Student
      * @param $firstName
      * @param $category
      */
-    public function __construct($name, $studentId, $firstName, $idCategory)
+    public function __construct()
     {
-        $this->name = $name;
-        $this->studentId = $studentId;
-        $this->firstName = $firstName;
-        $this->idCategory = $idCategory;
+
     }
 
     /**
