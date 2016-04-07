@@ -20,11 +20,9 @@ class Category
      * @param $categName
      * @param $categId
      */
-    public function __construct($categName, $categId, $idFormation)
+    public function __construct()
     {
-        $this->categName = $categName;
-        $this->categId = $categId;
-        $this->idFormation = $idFormation;
+
     }
 
     /**

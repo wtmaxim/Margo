@@ -44,11 +44,15 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 // Register repositories.
 $app['repository.etudiant'] = $app->share(function ($app) {
-    return new Margo\Repository\EtudiantRepository($app['db']);
+    return new Margo\Repository\EtudiantRepository($app['db'], $app['repository.category']);
 });
 $app['repository.prof'] = $app->share(function ($app) {
     return new Margo\Repository\profRepository($app['db'], $app['security.encoder.digest']);
 });
+$app['repository.category'] = $app->share(function ($app) {
+    return new Margo\Repository\CategoryRepository($app['db'], $app['security.encoder.digest']);
+});
+
 
 // Protect admin urls.
 $app->before(function (Request $request) use ($app) {

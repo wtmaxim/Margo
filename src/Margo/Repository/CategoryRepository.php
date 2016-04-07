@@ -98,7 +98,7 @@ class CategoryRepository implements RepositoryInterface
             ->orderBy(key($orderBy), current($orderBy));
         $statement = $queryBuilder->execute();
         $categorysData = $statement->fetchAll();
-        $etudiants = array();
+        $categorys = array();
         foreach ($categorysData as $categoryData) {
             $categoryId = $categoryData['id'];
             $categorys[$categoryId] = $this->buildCategory($categoryData);
