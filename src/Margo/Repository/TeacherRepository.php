@@ -47,17 +47,17 @@ class TeacherRepository implements RepositoryInterface
     /**
      * Deletes teacher.
      *
-     * @param \Margo\Entity\$teacher $teacher
+     * @param \Margo\Entity\Teacher $teacher
      */
     public function delete($teacher)
     {
-        return $this->db->delete('teachers', array('teacher_id' => $teacher->getId()));
+        return $this->db->delete('teacher', array('id' => $teacher->getTeacherId()));
     }
 
     /**
-     * Returns the total number of etudiant.
+     * Returns the total number of Teachers.
      *
-     * @return integer The total number of etudiant.
+     * @return integer The total number of teachers.
      */
     public function getCount() {
         return $this->db->fetchColumn('SELECT COUNT(id) FROM teacher');
@@ -73,7 +73,7 @@ class TeacherRepository implements RepositoryInterface
     public function find($id)
     {
         $teachersData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
-        return $teachersData ? $this->buildEleve($teachersData) : FALSE;
+        return $teachersData ? $this->buildTeacher($teachersData) : FALSE;
     }
 
     /**

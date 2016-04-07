@@ -8,6 +8,8 @@
             <th> {{ 'Nom' }} </th>
             <th> {{ 'Prenom' }} </th>
             <th> {{ 'Classe' }} </th>
+            <th> {{ 'Action' }} </th>
+
         </tr>
         </thead>
         <tbody>
@@ -16,6 +18,9 @@
                 <td> {{ teacher.teacherName }} </td>
                 <td> {{ teacher.teacherFirstName }} </td>
                 <td> {{ teacher.idSubject}} </td>
+                <td>
+                    <a href="{{ path('admin_teacher_delete', {'teacher': teacher}) }}">delete</a>
+                </td>
             </tr>
         {% else %}
             <tr>
