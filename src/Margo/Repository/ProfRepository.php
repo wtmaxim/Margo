@@ -3,59 +3,55 @@
 namespace Margo\Repository;
 
 use Doctrine\DBAL\Connection;
-
 use Margo\Entity\Teacher;
 
 /**
  * Artist repository
  */
-class TeacherRepository implements RepositoryInterface
+class ProfRepository implements RepositoryInterface
 {
     /**
      * @var \Doctrine\DBAL\Connection
      */
     protected $db;
 
-    protected $subjectRepository;
-
-    public function __construct(Connection $db, $subjectRepository)
+    public function __construct(Connection $db)
     {
         $this->db = $db;
-        $this->subjectRepository = $subjectRepository;
     }
 
     /**
      * Saves the etudiant to the database.
      *
-     * @param \Margo\Entity\Etudiant $etudiant
+     * @param \Margo\Entity\Prof $prof
      */
-    public function save($etudiant)
+    public function save($prof)
     {
-        $etudiantData = array(
-            'name' => $etudiant->getName(),
-            'firstname' => $etudiant->getFirstName(),
-            'idCategory' => $etudiant->getIdCategory(),
+        $profData = array(
+            'name' => $prof->getName(),
+            'firstname' => $prof->getFirstName(),
+            'idSubject' => $prof->getIdSubject(),
         );
 
-        if ($etudiant->getStudentId()) {
+        if ($prof->getTeacherId()) {
 
-            $this->db->update('student', $etudiantData, array('id' => $etudiant->getStudentId()));
+            $this->db->update('teacher', $profData, array('id' => $prof->getTeacherId()));
         }
         else {
-            $this->db->insert('student', $etudiantData);
+            $this->db->insert('teacher', $profData);
             $id = $this->db->lastInsertId();
-            $etudiant->setStudentId($id);
+            $prof->setTeacherId($id);
         }
     }
 
     /**
      * Deletes etudiant.
      *
-     * @param \Margo\Entity\Teacher $teacher
+     * @param \Margo\Entity\Student $etudiant
      */
-    public function delete($teacher)
+    public function delete($prof)
     {
-        return $this->db->delete('teacher', array('id' => $teacher->getId()));
+        return $this->db->delete('teacher', array('id' => $prof->getTeacherId()));
     }
 
     /**
@@ -64,7 +60,7 @@ class TeacherRepository implements RepositoryInterface
      * @return integer The total number of etudiant.
      */
     public function getCount() {
-        return $this->db->fetchColumn('SELECT COUNT(id) FROM student');
+        return $this->db->fetchColumn('SELECT COUNT(id) FROM teacher');
     }
 
     /**
@@ -76,8 +72,8 @@ class TeacherRepository implements RepositoryInterface
      */
     public function find($id)
     {
-        $teacherData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
-        return $teacherData ? $this->buildTeacher($teacherData) : FALSE;
+        $profData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
+        return $profData ? $this->buildTeacher($profData) : FALSE;
     }
 
     /**
@@ -107,13 +103,13 @@ class TeacherRepository implements RepositoryInterface
             ->setFirstResult($offset)
             ->orderBy(key($orderBy), current($orderBy));
         $statement = $queryBuilder->execute();
-        $teachersData = $statement->fetchAll();
-        $teachers = array();
-        foreach ($teachersData as $teacherData) {
-            $teacherId = $teacherData['id'];
-            $teachers[$teacherId] = $this->buildTeacher($teacherData);
+        $profsData = $statement->fetchAll();
+        $profs = array();
+        foreach ($profsData as $profData) {
+            $profId = $profData['id'];
+            $profs[$profId] = $this->buildTeacher($profData);
         }
-        return $teachers;
+        return $profs;
     }
 
     /**
@@ -124,15 +120,14 @@ class TeacherRepository implements RepositoryInterface
      *
      * @return \Margo\Entity\Etudiant
      */
-    protected function buildTeacher($teacherData)
+    protected function buildTeacher($profData)
     {
 
-
-
-        $teacher = new Teacher();
-        $teacher->setId($teacherData['id']);
-        $teacher->setName($teacherData['name']);
-        $teacher->setFirstName($teacherData['firstName']);
-        return $teacher;
+        $prof = new Teacher();
+        $prof->setTeacherId($profData['id']);
+        $prof->setName($profData['name']);
+        $prof->setFirstName($profData['firstName']);
+        $prof->setIdSubject($profData['idSubject']);
+        return $prof;
     }
 }

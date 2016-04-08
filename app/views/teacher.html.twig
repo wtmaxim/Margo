@@ -2,6 +2,7 @@
 {% set active = 'account' %}
 
 {% block content %}
+    <a href="{{ path('admin_teacher_add') }}" class="btn btn-add">{{ 'Ajouter un prof' }}</a>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -12,17 +13,19 @@
         </tr>
         </thead>
         <tbody>
-        {% for teacher in teachers %}
+        {% for prof in profs %}
             <tr>
-                <td> {{ teacher.name }} </td>
-                <td> {{ teacher.firstName }} </td>
+                <td> {{ prof.name }} </td>
+                <td> {{ prof.firstName }} </td>
+                <td> {{ prof.idSubject }} </td>
                 <td>
-                    <a href="{{ path('admin_teacher_delete', {'teacher': teacher.id}) }}">delete</a>
+                    <a href="{{ path('admin_teacher_delete', {'prof': prof.teacherId}) }}" class="btn btn-table btn-del">delete</a>
+                    <a href="{{ path('admin_teacher_edit', {'prof': prof.teacherId}) }}" class="btn btn-table btn-edit">Editer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td>{{ '0 etudiant.' }}</td>
+                <td>{{ '0 Prof.' }}</td>
             </tr>
         {% endfor %}
         </tbody>

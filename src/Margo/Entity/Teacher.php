@@ -4,7 +4,7 @@ namespace Margo\Entity;
 
 class Teacher
 {
-    private $id;
+    private $teacherId;
     private $firstName;
     private $name;
     private $idSubject;
@@ -20,17 +20,17 @@ class Teacher
     /**
      * @return mixed
      */
-    public function getId()
+    public function getTeacherId()
     {
-        return $this->id;
+        return $this->teacherId;
     }
 
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setTeacherId($teacherId)
     {
-        $this->id = $id;
+        $this->teacherId = $teacherId;
     }
 
     /**
