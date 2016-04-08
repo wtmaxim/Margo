@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'account' %}
+
+{% block title %}
+    Administration - Etudiants
+{% endblock %}
+
+{% block content %}
+    <a href="{{ path('admin_etudiant_add') }}" class="btn btn-add">{{ 'Ajouter un étudiant' }}</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> {{ 'Classe' }} </th>
+            <th> {{ 'Action' }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for classe in classes %}
+            <tr>
+                <td> {{ classe.categName }} </td>
+                <td>
+                    <a href="{{ path('admin_classe_delete', {'classe': classe.categId}) }}" class="btn btn-table btn-del">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ '0 etudiant.' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

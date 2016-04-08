@@ -50,7 +50,7 @@ class EtudiantRepository implements RepositoryInterface
     /**
      * Deletes etudiant.
      *
-     * @param \Margo\Entity\$etudiant $etudiant
+     * @param \Margo\Entity\Student $etudiant
      */
     public function delete($etudiant)
     {

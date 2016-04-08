@@ -45,7 +45,7 @@ $app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\StudentControl
     ->bind('admin_etudiant_edit');
 $app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\StudentController::deleteAction')
     ->bind('admin_etudiant_delete');
-
+//admin route prof
 $app->get('/admin/teachers', 'Margo\Controller\TeacherController::indexAction')
     ->bind('admin_teachers');
 $app->match('/admin/teacher/add', 'Margo\Controller\AdminProfController::addAction')
@@ -55,6 +55,7 @@ $app->match('/admin/teacher/{teacher}/edit', 'Margo\Controller\AdminProfControll
 $app->match('/admin/teacher/{teacher}/delete', 'Margo\Controller\TeacherController::deleteAction')
     ->bind('admin_teacher_delete');
 
+//admin route utilisateurs
 $app->get('/admin/users', 'Margo\Controller\AdminUserController::indexAction')
     ->bind('admin_users');
 $app->match('/admin/users/add', 'Margo\Controller\AdminUserController::addAction')
