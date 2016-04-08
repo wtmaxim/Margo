@@ -19,6 +19,12 @@ $app['controllers']->convert('user', function ($id) use ($app) {
         return $app['repository.user']->find($id);
     }
 });
+$app['controllers']->convert('classe', function ($id) use ($app) {
+   if ($id) {
+       return $app['repository.category']->find($id);
+   }
+});
+
 
 // Register routes.
 $app->get('/', 'Margo\Controller\IndexController::indexAction')

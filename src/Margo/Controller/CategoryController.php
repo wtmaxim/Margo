@@ -76,11 +76,11 @@ class CategoryController
 
     public function deleteAction(Request $request, Application $app)
     {
-        $category = $request->attributes->get('classe');
-        if (!$category) {
+        $classe = $request->attributes->get('classe');
+        if (!$classe) {
             $app->abort(404, 'The requested prof was not found.');
         }
-        $app['repository.category']->delete($category);
+        $app['repository.category']->delete($classe);
         return $app->redirect($app['url_generator']->generate('admin_categories'));
     }
 
