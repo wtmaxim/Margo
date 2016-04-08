@@ -65,3 +65,12 @@ $app->match('/admin/users/{user}/edit', 'Margo\Controller\AdminUserController::e
 $app->match('/admin/users/{user}/delete', 'Margo\Controller\AdminUserController::deleteAction')
     ->bind('admin_user_delete');
 
+//admin route classe
+$app->get('/admin/categories', 'Margo\Controller\CategoryController::indexAction')
+    ->bind('admin_categories');
+$app->match('/admin/categories/add', 'Margo\Controller\CategoryController::addAction')
+    ->bind('admin_category_add');
+$app->match('/admin/categories/{classe}/edit', 'Margo\Controller\CategoryController::editAction')
+    ->bind('admin_category_edit');
+$app->match('/admin/categories/{classe}/delete', 'Margo\Controller\CategoryController::deleteAction')
+    ->bind('admin_category_delete');

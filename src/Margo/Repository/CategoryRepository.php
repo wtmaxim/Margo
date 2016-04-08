@@ -43,9 +43,9 @@ class CategoryRepository implements RepositoryInterface
      *
      * @param \Margo\Entity\Category $category
      */
-    public function delete($category)
+    public function delete($classe)
     {
-        return $this->db->delete('category', array('id' => $category->getCategId()));
+        return $this->db->delete('category', array('id' => $classe->getCategId()));
     }
 
     /**
