@@ -24,6 +24,11 @@ $app['controllers']->convert('classe', function ($id) use ($app) {
        return $app['repository.category']->find($id);
    }
 });
+$app['controllers']->convert('subject', function ($id) use ($app) {
+   if ($id) {
+       return $app['repository.subject']->find($id);
+   }
+});
 
 
 // Register routes.
@@ -80,3 +85,5 @@ $app->match('/admin/categories/{classe}/edit', 'Margo\Controller\CategoryControl
     ->bind('admin_category_edit');
 $app->match('/admin/categories/{classe}/delete', 'Margo\Controller\CategoryController::deleteAction')
     ->bind('admin_category_delete');
+
+//admin route matière

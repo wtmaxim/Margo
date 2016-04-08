@@ -32,16 +32,16 @@ class CategoryController
 
     public function addAction(Request $request, Application $app)
     {
-        $teacher = new Teacher();
-        $form = $app['form.factory']->create(new TeacherType(), $teacher);
+        $category = new Category();
+        $form = $app['form.factory']->create(new CategoryType(), $category);
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
-                $app['repository.prof']->save($teacher);
-                $message = 'Le prof ' . $teacher->getName() . ' à été ajouté.';
+                $app['repository.category']->save($category);
+                $message = 'La classe ' . $category->getCategName() . ' à été ajouté.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
-                $redirect = $app['url_generator']->generate('admin_teacher_add', array('prof' => $teacher->getTeacherId()));
+                $redirect = $app['url_generator']->generate('admin_category_add', array('category' => $category->getCategId()));
                 return $app->redirect($redirect);
             }
         }
@@ -54,22 +54,22 @@ class CategoryController
 
     public function editAction(Request $request, Application $app)
     {
-        $prof = $request->attributes->get('prof');
-        if (!$prof) {
-            $app->abort(404, 'La requête prof n\a pas été trouvé.');
+        $category = $request->attributes->get('classe');
+        if (!$category) {
+            $app->abort(404, 'La classe n\'a pas été trouvé.');
         }
-        $form = $app['form.factory']->create(new TeacherType(), $prof);
+        $form = $app['form.factory']->create(new CategoryType(), $category);
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
-                $app['repository.prof']->save($prof);
-                $message = 'Le prof à été modifié !.';
+                $app['repository.category']->save($category);
+                $message = 'La classe à été modifié !.';
                 $app['session']->getFlashBag()->add('success', $message);
             }
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Edition d\'un prof',
+            'title' => 'Edition d\'une classe',
         );
         return $app['twig']->render('form.html.twig', $data);
     }

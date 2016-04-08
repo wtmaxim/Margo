@@ -52,6 +52,9 @@ $app['repository.prof'] = $app->share(function ($app) {
 $app['repository.category'] = $app->share(function ($app) {
     return new Margo\Repository\CategoryRepository($app['db'], $app['security.encoder.digest']);
 });
+$app['repository.subject'] = $app->share(function ($app) {
+    return new Margo\Repository\SubjectRepository($app['db'], $app['security.encoder.digest']);
+});
 
 
 // Protect admin urls.
