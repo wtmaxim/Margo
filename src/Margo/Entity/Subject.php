@@ -14,6 +14,7 @@ class Subject
     private $timeVolume;
     private $coefficient;
     private $idCategory;
+    private $teacher;
 
     /**
      * Subject constructor.
@@ -109,5 +110,9 @@ class Subject
         $this->coefficient = $idCategory;
     }
 
+    public function getTeacher()
+    {
+        return $this->teacher;
+    }
 
 }
