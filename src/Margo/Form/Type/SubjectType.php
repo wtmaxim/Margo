@@ -12,13 +12,6 @@ class SubjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('idSubject', 'text', array(
-                'label' => ' ',
-                'constraints' => new Assert\NotBlank(),
-                'attr' => array(
-                    'placeholder' => '1',
-                )
-            ))
             ->add('nameSubject', 'text', array(
                 'label' => ' ',
                 'constraints' => new Assert\NotBlank(),
