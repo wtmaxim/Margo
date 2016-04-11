@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c7561a1c0e6e02447d846363c0423e9a",
-    "content-hash": "0ede2c37ba7f4ffe0544a776e563658f",
+    "hash": "5deb63bd7452d4243f837bd5eae2ad89",
+    "content-hash": "68a900449264228492149c7287121267",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -889,6 +889,79 @@
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
             "time": "2016-03-30 10:41:14"
+        },
+        {
+            "name": "symfony/doctrine-bridge",
+            "version": "v3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/doctrine-bridge.git",
+                "reference": "af54a9edd8e1fe1e2de126f3924ddb02f1c3fa54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/af54a9edd8e1fe1e2de126f3924ddb02f1c3fa54",
+                "reference": "af54a9edd8e1fe1e2de126f3924ddb02f1c3fa54",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.4",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "doctrine/data-fixtures": "1.0.*",
+                "doctrine/dbal": "~2.4",
+                "doctrine/orm": "~2.4,>=2.4.5",
+                "symfony/dependency-injection": "~2.8|~3.0",
+                "symfony/expression-language": "~2.8|~3.0",
+                "symfony/form": "~3.0,>3.0-BETA1",
+                "symfony/http-kernel": "~2.8|~3.0",
+                "symfony/property-access": "~2.8|~3.0",
+                "symfony/property-info": "~2.8|3.0",
+                "symfony/security": "~2.8|~3.0",
+                "symfony/stopwatch": "~2.8|~3.0",
+                "symfony/translation": "~2.8|~3.0",
+                "symfony/validator": "~2.8|~3.0"
+            },
+            "suggest": {
+                "doctrine/data-fixtures": "",
+                "doctrine/dbal": "",
+                "doctrine/orm": "",
+                "symfony/form": "",
+                "symfony/property-info": "",
+                "symfony/validator": ""
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Bridge\\Doctrine\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Doctrine Bridge",
+            "homepage": "https://symfony.com",
+            "time": "2016-03-23 13:23:25"
         },
         {
             "name": "symfony/event-dispatcher",

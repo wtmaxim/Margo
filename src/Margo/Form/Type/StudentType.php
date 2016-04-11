@@ -5,6 +5,8 @@ namespace Margo\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Tests\Fixtures\Entity;
 
 class StudentType extends AbstractType
 {
@@ -24,13 +26,6 @@ class StudentType extends AbstractType
                 'constraints' => new Assert\NotBlank(),
                 'attr' => array(
                     'placeholder' => 'Prénom',
-                )
-            ))
-            ->add('idCategory', 'text', array(
-                'label' => ' ',
-                'constraints' => new Assert\NotBlank(),
-                'attr' => array(
-                    'placeholder' => 'Classe',
                 )
             ))
             ->add('Enregistrer', 'submit');
