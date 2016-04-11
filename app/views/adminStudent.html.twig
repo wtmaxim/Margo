@@ -2,16 +2,18 @@
 {% set active = 'account' %}
 
 {% block title %}
-   Etudiants
+   Administration - Etudiants
 {% endblock %}
 
 {% block content %}
+   <a href="{{ path('admin_etudiant_add') }}" class="btn btn-add">{{ 'Ajouter un étudiant' }}</a>
    <table class="table table-hover">
       <thead>
       <tr>
          <th> {{ 'Nom' }} </th>
          <th> {{ 'Prenom' }} </th>
          <th> {{ 'Classe' }} </th>
+         <th> {{ 'Action' }}</th>
       </tr>
       </thead>
       <tbody>
@@ -20,6 +22,10 @@
             <td> {{ etudiant.name }} </td>
             <td> {{ etudiant.firstName }} </td>
             <td> {{ etudiant.category.categName }} </td>
+            <td>
+               <a href="{{ path('admin_etudiant_delete', {'etudiant': etudiant.studentId}) }}" class="btn btn-table btn-del">Supprimer</a>
+               <a href="{{ path('admin_etudiant_edit', {'etudiant': etudiant.studentId}) }}" class="btn btn-table btn-edit">Editer</a>
+            </td>
          </tr>
       {% else %}
          <tr>

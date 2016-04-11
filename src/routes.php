@@ -34,9 +34,12 @@ $app['controllers']->convert('subject', function ($id) use ($app) {
 // Register routes.
 $app->get('/', 'Margo\Controller\IndexController::indexAction')
     ->bind('homepage');
-
-$app->get('/student', 'Margo\Controller\StudentController::indexAction');
-
+$app->get('/etudiants', 'Margo\Controller\StudentController::indexAction')
+    ->bind('etudiants');
+$app->get('/classes', 'Margo\Controller\CategoryController::indexAction')
+    ->bind('categories');
+$app->get('/profs', 'Margo\Controller\TeacherController::indexAction')
+    ->bind('teachers');
 // Login route
 $app->match('/login', 'Margo\Controller\UserController::loginAction')
     ->bind('login');
@@ -48,22 +51,22 @@ $app->get('/admin', 'Margo\Controller\AdminController::indexAction')
     ->bind('admin');
 
 // Admin route eleve
-$app->get('/admin/etudiants', 'Margo\Controller\StudentController::indexAction')
+$app->get('/admin/etudiants', 'Margo\Controller\AdminStudentController::indexAction')
     ->bind('admin_etudiants');
-$app->match('/admin/etudiant/add', 'Margo\Controller\StudentController::addAction')
+$app->match('/admin/etudiant/add', 'Margo\Controller\AdminStudentController::addAction')
     ->bind('admin_etudiant_add');
-$app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\StudentController::editAction')
+$app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\AdminStudentController::editAction')
     ->bind('admin_etudiant_edit');
-$app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\StudentController::deleteAction')
+$app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\AdminStudentController::deleteAction')
     ->bind('admin_etudiant_delete');
 //admin route prof
-$app->get('/admin/teachers', 'Margo\Controller\TeacherController::indexAction')
+$app->get('/admin/teachers', 'Margo\Controller\AdminTeacherController::indexAction')
     ->bind('admin_teachers');
-$app->match('/admin/teachers/add', 'Margo\Controller\TeacherController::addAction')
+$app->match('/admin/teachers/add', 'Margo\Controller\AdminTeacherController::addAction')
     ->bind('admin_teacher_add');
-$app->match('/admin/teachers/{prof}/edit', 'Margo\Controller\TeacherController::editAction')
+$app->match('/admin/teachers/{prof}/edit', 'Margo\Controller\AdminTeacherController::editAction')
     ->bind('admin_teacher_edit');
-$app->match('/admin/teachers/{prof}/delete', 'Margo\Controller\TeacherController::deleteAction')
+$app->match('/admin/teachers/{prof}/delete', 'Margo\Controller\AdminTeacherController::deleteAction')
     ->bind('admin_teacher_delete');
 
 //admin route utilisateurs
@@ -77,13 +80,13 @@ $app->match('/admin/users/{user}/delete', 'Margo\Controller\AdminUserController:
     ->bind('admin_user_delete');
 
 //admin route classe
-$app->get('/admin/categories', 'Margo\Controller\CategoryController::indexAction')
+$app->get('/admin/categories', 'Margo\Controller\AdminCategoryController::indexAction')
     ->bind('admin_categories');
-$app->match('/admin/categories/add', 'Margo\Controller\CategoryController::addAction')
+$app->match('/admin/categories/add', 'Margo\Controller\AdminCategoryController::addAction')
     ->bind('admin_category_add');
-$app->match('/admin/categories/{classe}/edit', 'Margo\Controller\CategoryController::editAction')
+$app->match('/admin/categories/{classe}/edit', 'Margo\Controller\AdminCategoryController::editAction')
     ->bind('admin_category_edit');
-$app->match('/admin/categories/{classe}/delete', 'Margo\Controller\CategoryController::deleteAction')
+$app->match('/admin/categories/{classe}/delete', 'Margo\Controller\AdminCategoryController::deleteAction')
     ->bind('admin_category_delete');
 
 //admin route matière

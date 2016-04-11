@@ -54,6 +54,7 @@ nav {
 
     nav .menu {
         margin-top: 50px;
+        overflow: scroll;
     }
 
     nav a {
