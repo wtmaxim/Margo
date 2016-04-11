@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'account' %}
+
+{% block title %}
+    Administration - Etudiants
+{% endblock %}
+
+{% block content %}
+    <a href="{{ path('admin_subject_add') }}" class="btn btn-add">{{ 'Ajouter un cours' }}</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> {{ 'Id' }} </th>
+            <th> {{ 'Matière' }} </th>
+            <th> {{ 'Actions' }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td> {{ subject.idSubject }} </td>
+                <td> {{ subject.nameSubject }} </td>
+                <td>
+                    <a href="{{ path('admin_subject_delete', {'matiere': subject.idSubject}) }}" class="btn btn-table btn-del">Supprimer</a>
+                    <a href="{{ path('admin_subject_edit', {'matiere': subject.idSubject}) }}" class="btn btn-table btn-edit">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ '0 etudiant.' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

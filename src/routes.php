@@ -24,7 +24,7 @@ $app['controllers']->convert('classe', function ($id) use ($app) {
        return $app['repository.category']->find($id);
    }
 });
-$app['controllers']->convert('subject', function ($id) use ($app) {
+$app['controllers']->convert('matiere', function ($id) use ($app) {
    if ($id) {
        return $app['repository.subject']->find($id);
    }
@@ -90,3 +90,11 @@ $app->match('/admin/categories/{classe}/delete', 'Margo\Controller\AdminCategory
     ->bind('admin_category_delete');
 
 //admin route matière
+$app->get('/admin/subject', 'Margo\Controller\AdminSubjectController::indexAction')
+    ->bind('admin_subjects');
+$app->match('/admin/subject/add', 'Margo\Controller\AdminSubjectController::addAction')
+    ->bind('admin_subject_add');
+$app->match('/admin/subject/{matiere}/edit', 'Margo\Controller\AdminSubjectController::editAction')
+    ->bind('admin_subject_edit');
+$app->match('/admin/subject/{matiere}/delete', 'Margo\Controller\AdminSubjectController::deleteAction')
+    ->bind('admin_subject_delete');

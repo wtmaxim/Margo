@@ -3,7 +3,7 @@
 namespace Margo\Repository;
 
 use Doctrine\DBAL\Connection;
-use Margo\Entity\Category;
+use Margo\Entity\Subject;
 
 class SubjectRepository implements RepositoryInterface
 {
@@ -20,21 +20,23 @@ class SubjectRepository implements RepositoryInterface
      *
      * @param \Margo\Entity\Category $category
      */
-    public function save($category)
+    public function save($subject)
     {
-        $categoryData = array(
-            'name' => $category->getCategName(),
-            'idformation' => $category->getIdFormation(),
+        $subjectData = array(
+            'id' => $subject->getIdSubject(),
+            'name' => $subject->getNameSubject(),
+            'timeVolume' => $subject->getTimeVolume(),
+            'coefficient' => $subject->getCoefficient()
         );
 
-        if ($category->getCategId()) {
+        if ($subject->getIdSubject()) {
 
-            $this->db->update('category', $categoryData, array('id' => $category->getCategId()));
+            $this->db->update('subject', $subjectData, array('id' => $subject->getIdSubject()));
         }
         else {
-            $this->db->insert('category', $categoryData);
+            $this->db->insert('subject', $subjectData);
             $id = $this->db->lastInsertId();
-            $category->setCategId($id);
+            $subject->setIdSubject($id);
         }
     }
 
@@ -43,9 +45,9 @@ class SubjectRepository implements RepositoryInterface
      *
      * @param \Margo\Entity\Category $category
      */
-    public function delete($classe)
+    public function delete($subject)
     {
-        return $this->db->delete('category', array('id' => $classe->getCategId()));
+        return $this->db->delete('subject', array('id' => $subject->getIdSubject()));
     }
 
     /**
@@ -54,7 +56,7 @@ class SubjectRepository implements RepositoryInterface
      * @return integer The total number of category.
      */
     public function getCount() {
-        return $this->db->fetchColumn('SELECT COUNT(id) FROM category');
+        return $this->db->fetchColumn('SELECT COUNT(id) FROM subject');
     }
 
     /**
@@ -66,8 +68,8 @@ class SubjectRepository implements RepositoryInterface
      */
     public function find($id)
     {
-        $categoryData = $this->db->fetchAssoc('SELECT * FROM category WHERE id = ?', array($id));
-        return $categoryData ? $this->buildCategory($categoryData) : FALSE;
+        $subjectData = $this->db->fetchAssoc('SELECT * FROM subject WHERE id = ?', array($id));
+        return $subjectData ? $this->buildSubject($subjectData) : FALSE;
     }
 
     /**
@@ -91,36 +93,37 @@ class SubjectRepository implements RepositoryInterface
 
         $queryBuilder = $this->db->createQueryBuilder();
         $queryBuilder
-            ->select('c.*')
-            ->from('category', 'c')
+            ->select('e.*')
+            ->from('subject', 'e')
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->orderBy(key($orderBy), current($orderBy));
         $statement = $queryBuilder->execute();
-        $categorysData = $statement->fetchAll();
-        $categorys = array();
-        foreach ($categorysData as $categoryData) {
-            $categoryId = $categoryData['id'];
-            $categorys[$categoryId] = $this->buildCategory($categoryData);
+        $subjectsData = $statement->fetchAll();
+        $subject = array();
+        foreach ($subjectsData as $subjectData) {
+            $subjectId = $subjectData['id'];
+            $subjects[$subjectId] = $this->buildSubject($subjectData);
         }
-        return $categorys;
+        return $subjects;
     }
-
     /**
-     * Instantiates an $category entity and sets its properties using db data.
+     * Instantiates an $subject entity and sets its properties using db data.
      *
-     * @param array $categoryData
+     * @param array $subjectData
      *   The array of db data.
      *
-     * @return \Margo\Entity\Category
+     * @return \Margo\Entity\Subject
      */
-    protected function buildCategory($categoryData)
+    protected function buildSubject($subjectData)
     {
-        $category = new Category();
-        $category->setCategId($categoryData['id']);
-        $category->setCategName($categoryData['name']);
-        $category->setIdFormation($categoryData['idFormation']);
-        return $category;
+        $subject = new Subject();
+        $subject->setIdSubject($subjectData['id']);
+        $subject->setNameSubject($subjectData['name']);
+        $subject->setIdCategory($subjectData['idCategory']);
+        $subject->setTimeVolume($subjectData['timeVolume']);
+        $subject->setCoefficient($subjectData['coefficient']);
+        return $subject;
     }
 
 }

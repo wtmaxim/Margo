@@ -5,12 +5,15 @@
  * Date: 06-Apr-16
  * Time: 6:47 PM
  */
+namespace Margo\Entity;
+
 class Subject
 {
     private $idSubject;
     private $nameSubject;
     private $timeVolume;
     private $coefficient;
+    private $idCategory;
 
     /**
      * Subject constructor.
@@ -19,14 +22,11 @@ class Subject
      * @param $nameSubject
      * @param $coefficient
      */
-    public function __construct($idSubject, $timeVolume, $nameSubject, $coefficient)
-    {
-        $this->idSubject = $idSubject;
-        $this->timeVolume = $timeVolume;
-        $this->nameSubject = $nameSubject;
-        $this->coefficient = $coefficient;
-    }
 
+    public function __construct()
+    {
+
+    }
 
     /**
      * @return mixed
@@ -90,6 +90,23 @@ class Subject
     public function setCoefficient($coefficient)
     {
         $this->coefficient = $coefficient;
+    }
+
+    /**
+     * @param mixed $idCategory
+     */
+
+    public function getIdCategory()
+    {
+        return $this->idCategory;
+    }
+
+    /**
+     * @param mixed $idCategory
+     */
+    public function setIdCategory($idCategory)
+    {
+        $this->coefficient = $idCategory;
     }
 
 
