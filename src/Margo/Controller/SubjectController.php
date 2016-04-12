@@ -25,8 +25,8 @@ class SubjectController
             'subjects' => $subjects,
             'currentPage' => $currentPage,
             'numPages' => $numPages,
-            'here' => $app['url_generator']->generate('admin_subjects'),
+            'here' => $app['url_generator']->generate('subject'),
         );
-        return $app['twig']->render('adminSubject.html.twig', $data);
+        return $app['twig']->render('subject.html.twig', $data);
     }
 }

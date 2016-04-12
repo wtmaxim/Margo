@@ -40,6 +40,8 @@ $app->get('/classes', 'Margo\Controller\CategoryController::indexAction')
     ->bind('categories');
 $app->get('/profs', 'Margo\Controller\TeacherController::indexAction')
     ->bind('teachers');
+$app->get('/cours', 'Margo\Controller\SubjectController::indexAction')
+    ->bind('subject');
 // Login route
 $app->match('/login', 'Margo\Controller\UserController::loginAction')
     ->bind('login');
