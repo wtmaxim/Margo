@@ -80,7 +80,15 @@ class AdminCategoryController
         if (!$classe) {
             $app->abort(404, 'The requested prof was not found.');
         }
-        $app['repository.category']->delete($classe);
+
+        $student = $app['repository.etudiant']->selectOneByIdCateg($classe->getCategId());
+        if (!empty($student)) {
+            $message = 'Impossible de supprimer : un ou plusieurs étudiants sont inscrits à cette classe';
+            $app['session']->getFlashBag()->add('error', $message);
+        } else {
+            $app['repository.category']->delete($classe);
+        }
+
         return $app->redirect($app['url_generator']->generate('admin_categories'));
     }
 

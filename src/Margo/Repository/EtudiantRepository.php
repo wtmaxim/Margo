@@ -80,6 +80,17 @@ class EtudiantRepository implements RepositoryInterface
     }
 
     /**
+    Recuperer eventuel etudiant dans une classe
+     *
+     */
+
+    public function selectOneByIdCateg($idCategory)
+    {
+        $etudiants = $this->db->fetchAssoc('SELECT * FROM student WHERE idCategory = ?', array($idCategory));
+        return $etudiants;
+    }
+
+    /**
      * Returns a collection of etudiant, sorted by name.
      *
      * @param integer $limit

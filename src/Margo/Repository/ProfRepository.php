@@ -77,17 +77,6 @@ class ProfRepository implements RepositoryInterface
     }
 
     /**
-     *
-     */
-    public function findBySubject($idSubject)
-    {
-
-        $subject = $this->subjectRepository->find($idSubject['idSubject']);
-        return $subject;
-
-    }
-
-    /**
      * Returns a collection of etudiant, sorted by name.
      *
      * @param integer $limit
