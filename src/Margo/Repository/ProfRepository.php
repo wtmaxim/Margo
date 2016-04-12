@@ -51,7 +51,7 @@ class ProfRepository implements RepositoryInterface
      */
     public function delete($prof)
     {
-        return $this->db->delete('teacher', array('id' => $prof->getTeacherId()));
+        return $this->db->de+lete('teacher', array('id' => $prof->getTeacherId()));
     }
 
     /**

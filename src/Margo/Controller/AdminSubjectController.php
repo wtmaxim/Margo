@@ -80,14 +80,9 @@ class AdminSubjectController
         if (!$subject) {
             $app->abort(404, 'The requested subject was not found.');
         }
-        $existTeach = $app['repository.teacher']->findBySubject($subject->getIdSubject);
 
-        if ( !$existTeach){
-            $app['repository.subject']->delete($subject);
-        } else {
-            $message = 'Ce cours est déjà attribué à un prof';
-            $app['session']->getFlashBag()->add('error', $message);
-        }
+        $app['repository.subject']->delete($subject);
+
         return $app->redirect($app['url_generator']->generate('admin_subjects'));
 
     }
