@@ -124,6 +124,17 @@ class ProfRepository implements RepositoryInterface
     }
 
     /**
+     Recuperer eventuel prof dans une matiere
+     *
+     */
+
+    public function selectOneByIdSubject($idSubject)
+    {
+        $profs = $this->db->fetchAssoc('SELECT * FROM teacher WHERE idSubject = ?', array($idSubject));
+        return $profs;
+    }
+
+    /**
      * Instantiates an $etudiant entity and sets its properties using db data.
      *
      * @param array $etudiantData

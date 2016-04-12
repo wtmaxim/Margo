@@ -56,6 +56,26 @@ class UserController
         return $app->redirect($app['url_generator']->generate('homepage'));
     }
 
+    public function indexAction(Request $request, Application $app)
+    {
+        // Perform pagination logic.
+        $limit = 10;
+        $total = $app['repository.user']->getCount();
+        $numPages = ceil($total / $limit);
+        $currentPage = $request->query->get('page', 1);
+        $offset = ($currentPage - 1) * $limit;
+        $users = $app['repository.user']->findAll($limit, $offset);
+        $data = array(
+            'users' => $users,
+            'currentPage' => $currentPage,
+            'numPages' => $numPages,
+            'here' => $app['url_generator']->generate('admin_users'),
+        );
+        return $app['twig']->render('adminUser.html.twig', $data);
+
+    }
+
+
     public function addAction(Request $request, Application $app)
     {
         $user = new User();

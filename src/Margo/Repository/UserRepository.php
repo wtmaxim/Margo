@@ -191,6 +191,7 @@ class UserRepository implements RepositoryInterface, UserProviderInterface
         $user = new User();
         $user->setId($userData['user_id']);
         $user->setUsername($userData['username']);
+        $user->setMail($userData['mail']);
         $user->setSalt($userData['salt']);
         $user->setPassword($userData['password']);
         $user->setRole($userData['role']);
