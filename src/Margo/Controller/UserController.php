@@ -55,4 +55,27 @@ class UserController
         $app['session']->clear();
         return $app->redirect($app['url_generator']->generate('homepage'));
     }
+
+    public function addAction(Request $request, Application $app)
+    {
+        $user = new User();
+        $form = $app['form.factory']->create(new UserType(), $user);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $app['repository.user']->save($user);
+                $message = 'L\'utilisateur ' . $user->getUserName() . ' à été ajouté.';
+                $app['session']->getFlashBag()->add('success', $message);
+                // Redirect to the edit page.
+                $redirect = $app['url_generator']->generate('admin_user_add', array('user' => $user->getId()));
+                return $app->redirect($redirect);
+            }
+        }
+        $data = array(
+            'form' => $form->createView(),
+            'title' => 'Ajout d\'un utilisateur',
+        );
+        return $app['twig']->render('form.html.twig', $data);
+    }
+
 }

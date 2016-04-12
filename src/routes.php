@@ -72,9 +72,9 @@ $app->match('/admin/teachers/{prof}/delete', 'Margo\Controller\AdminTeacherContr
     ->bind('admin_teacher_delete');
 
 //admin route utilisateurs
-$app->get('/admin/users', 'Margo\Controller\AdminUserController::indexAction')
+$app->get('/admin/users', 'Margo\Controller\UserController::indexAction')
     ->bind('admin_users');
-$app->match('/admin/users/add', 'Margo\Controller\AdminUserController::addAction')
+$app->match('/admin/users/add', 'Margo\Controller\UserController::addAction')
     ->bind('admin_user_add');
 $app->match('/admin/users/{user}/edit', 'Margo\Controller\AdminUserController::editAction')
     ->bind('admin_user_edit');

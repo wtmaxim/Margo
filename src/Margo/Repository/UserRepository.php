@@ -40,6 +40,7 @@ class UserRepository implements RepositoryInterface, UserProviderInterface
         $userData = array(
             'username' => $user->getUsername(),
             'role' => $user->getRole(),
+            'mail' => $user->getMail(),
         );
         // If the password was changed, re-encrypt it.
         if (strlen($user->getPassword()) != 88) {

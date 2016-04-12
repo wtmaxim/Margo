@@ -1,6 +1,6 @@
 <?php
 
-namespace MusicBox\Form\Type;
+namespace Margo\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,10 +24,6 @@ class UserType extends AbstractType
             ))
             ->add('mail', 'email', array(
                 'constraints' => array(new Assert\NotBlank(), new Assert\Email()),
-            ))
-            ->add('file', 'file', array(
-                'required' => FALSE,
-                'label' => 'Image',
             ))
             ->add('role', 'choice', array(
                 'choices' => array('ROLE_USER' => 'User', 'ROLE_ADMIN' => 'Admin')

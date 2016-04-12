@@ -56,6 +56,10 @@ $app['repository.subject'] = $app->share(function ($app) {
     return new Margo\Repository\SubjectRepository($app['db'], $app['security.encoder.digest']);
 });
 
+$app['repository.user'] = $app->share(function ($app) {
+    return new Margo\Repository\UserRepository($app['db'], $app['security.encoder.digest']);
+});
+
 
 // Protect admin urls.
 $app->before(function (Request $request) use ($app) {
