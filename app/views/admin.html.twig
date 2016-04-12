@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'account' %}
+
+{% block title %}
+    Administrateur
+{% endblock %}
+
+{% block content %}
+    <a href="{{ path('admin_etudiants') }}">Etudiant</a>
+    <a href="{{ path('admin_teachers') }}">Professeur</a>
+    <a href="{{ path('admin_categories') }}">Classe</a>
+{% endblock %}
