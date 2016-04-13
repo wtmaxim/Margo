@@ -6,9 +6,11 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{{ path('admin_etudiants') }}">Etudiant</a>
-    <a href="{{ path('admin_teachers') }}">Professeur</a>
-    <a href="{{ path('admin_categories') }}">Classe</a>
-    <a href="{{ path('admin_subjects') }}">Cours</a>
-    <a href="{{ path('admin_users') }}">Utilisateurs</a>
+    <div class="metro">
+        <a class="metro-pomegranate" href="{{ path('admin_etudiants') }}">Etudiant</a>
+        <a class="metro-wisteria" href="{{ path('admin_teachers') }}">Professeur</a>
+        <a class="metro-pumkin" href="{{ path('admin_categories') }}">Classe</a>
+        <a class="metro-nephritis" href="{{ path('admin_subjects') }}">Cours</a>
+        <a class="metro-blue" href="{{ path('admin_users') }}">Utilisateurs</a>
+    </div>
 {% endblock %}
