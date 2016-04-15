@@ -15,5 +15,5 @@ $app['db.options'] = array(
     'host'     => 'localhost',
     'dbname'   => 'margo2',
     'user'     => 'root',
-    'password' => 'mysql',
+    'password' => '',
 );
