@@ -13,7 +13,7 @@ class Subject
     private $nameSubject;
     private $timeVolume;
     private $coefficient;
-    private $idCategory;
+    private $category;
     private $teacher;
 
     /**
@@ -97,17 +97,17 @@ class Subject
      * @param mixed $idCategory
      */
 
-    public function getIdCategory()
+    public function getCategory()
     {
-        return $this->idCategory;
+        return $this->category;
     }
 
     /**
-     * @param mixed $idCategory
+     * @param mixed $Category
      */
-    public function setIdCategory($idCategory)
+    public function setCategory($category)
     {
-        $this->coefficient = $idCategory;
+        $this->category = $category;
     }
 
     public function getTeacher()

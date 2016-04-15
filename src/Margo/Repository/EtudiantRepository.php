@@ -33,7 +33,7 @@ class EtudiantRepository implements RepositoryInterface
         $etudiantData = array(
             'name' => $etudiant->getName(),
             'firstname' => $etudiant->getFirstName(),
-            'idCategory' => $etudiant->getIdCategory(),
+            'category' => $etudiant->getCategory()->getCategName(),
         );
 
         if ($etudiant->getStudentId()) {
@@ -84,9 +84,9 @@ class EtudiantRepository implements RepositoryInterface
      *
      */
 
-    public function selectOneByIdCateg($idCategory)
+    public function selectOneByCateg($category)
     {
-        $etudiants = $this->db->fetchAssoc('SELECT * FROM student WHERE idCategory = ?', array($idCategory));
+        $etudiants = $this->db->fetchAssoc('SELECT * FROM student WHERE student_category = ?', array($category));
         return $etudiants;
     }
 

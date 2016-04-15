@@ -13,7 +13,11 @@ class Category
 {
     private $categId;
     private $categName;
-    private $idFormation;
+    /**
+ *
+ * @var type Formation
+ */
+    private $formation;
 
     /**
      * Category constructor.
@@ -28,17 +32,17 @@ class Category
     /**
      * @return mixed
      */
-    public function getIdFormation()
+    public function getFormation()
     {
-        return $this->idFormation;
+        return $this->formation;
     }
 
     /**
      * @param mixed $idFormation
      */
-    public function setIdFormation($idFormation)
+    public function setFormation($formation)
     {
-        $this->idFormation = $idFormation;
+        $this->formation = $formation;
     }
 
     /**

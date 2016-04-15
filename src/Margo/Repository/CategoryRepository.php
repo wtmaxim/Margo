@@ -24,7 +24,7 @@ class CategoryRepository implements RepositoryInterface
     {
         $categoryData = array(
             'name' => $category->getCategName(),
-            'idformation' => $category->getIdFormation(),
+            'formation' => $category->getFormation(),
         );
 
         if ($category->getCategId()) {
@@ -119,7 +119,7 @@ class CategoryRepository implements RepositoryInterface
         $category = new Category();
         $category->setCategId($categoryData['id']);
         $category->setCategName($categoryData['name']);
-        $category->setIdFormation($categoryData['idFormation']);
+        $category->setFormation($categoryData['formation']);
         return $category;
     }
 

@@ -13,7 +13,6 @@ class Student
     private $studentId;
     private $name;
     private $firstName;
-    private $idCategory;
     private $category;
 
     /**
@@ -95,18 +94,7 @@ class Student
     /**
      * @return mixed
      */
-    public function getIdCategory()
-    {
-        return $this->idCategory;
-    }
 
-    /**
-     * @param mixed $idCategory
-     */
-    public function setIdCategory($idCategory)
-    {
-        $this->idCategory = $idCategory;
-    }
 
 
 

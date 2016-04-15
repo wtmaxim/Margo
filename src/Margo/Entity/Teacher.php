@@ -7,7 +7,7 @@ class Teacher
     private $teacherId;
     private $firstName;
     private $name;
-    private $idSubject;
+    private $subject;
 
     /**
      * Teacher constructor.
@@ -68,18 +68,23 @@ class Teacher
     /**
      * @return mixed
      */
-    public function getIdSubject()
+    public function getSubject()
     {
-        return $this->idSubject;
+        return $this->subject;
     }
 
     /**
-     * @param mixed $idSubject
+     * @param mixed $subject
      */
-    public function setIdSubject($idSubject)
+    public function setSubject($subject)
     {
-        $this->idSubject = $idSubject;
+        $this->subject = $subject;
     }
+
+    /**
+     * @return mixed
+     */
+
 
 
 }
