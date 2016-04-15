@@ -109,7 +109,11 @@ class CategoryRepository implements RepositoryInterface
         }
         return $categorys;
     }
-
+    public function selectOneByNameFormation($nameFormation)
+    {
+        $category = $this->db->fetchAssoc('SELECT * FROM category WHERE categ_formation = ?', array($nameFormation));
+        return $category;
+    }
     /**
      * Instantiates an $category entity and sets its properties using db data.
      *

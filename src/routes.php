@@ -29,6 +29,12 @@ $app['controllers']->convert('matiere', function ($id) use ($app) {
        return $app['repository.subject']->find($id);
    }
 });
+$app['controllers']->convert('formation', function ($id) use ($app) {
+    if ($id) {
+        return $app['repository.formation']->find($id);
+    }
+});
+
 
 
 // Register routes.
@@ -42,6 +48,8 @@ $app->get('/profs', 'Margo\Controller\TeacherController::indexAction')
     ->bind('teachers');
 $app->get('/cours', 'Margo\Controller\SubjectController::indexAction')
     ->bind('subject');
+$app->get('/formations', 'Margo\Controller\FormationController::indexAction')
+    ->bind('formations');
 // Login route
 $app->match('/login', 'Margo\Controller\UserController::loginAction')
     ->bind('login');
@@ -100,3 +108,12 @@ $app->match('/admin/subject/{matiere}/edit', 'Margo\Controller\AdminSubjectContr
     ->bind('admin_subject_edit');
 $app->match('/admin/cours/{matiere}/delete', 'Margo\Controller\AdminSubjectController::deleteAction')
     ->bind('admin_subject_delete');
+// admin route formation
+$app->get('/admin/formations', 'Margo\Controller\AdminFormationController::indexAction')
+    ->bind('admin_formations');
+$app->match('/admin/formation/add', 'Margo\Controller\AdminFormationController::addAction')
+    ->bind('admin_formation_add');
+$app->match('/admin/formation/{formation}/edit', 'Margo\Controller\AdminFormationController::editAction')
+    ->bind('admin_formation_edit');
+$app->match('/admin/formation/{formation}/delete', 'Margo\Controller\AdminFormationController::deleteAction')
+    ->bind('admin_formation_delete');

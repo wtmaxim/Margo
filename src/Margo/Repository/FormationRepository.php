@@ -99,8 +99,8 @@ class FormationRepository implements RepositoryInterface
         $formationsData = $statement->fetchAll();
         $formations = array();
         foreach ($formationsData as $formationData) {
-            $formationId = $formationsData['id'];
-            $formations[$formationId] = $this->buildCategory($formationData);
+            $formationId = $formationData['id'];
+            $formations[$formationId] = $this->buildFormation($formationData);
         }
         return $formations;
     }

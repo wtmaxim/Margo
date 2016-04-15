@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'account' %}
+
+{% block title %}
+    Formations
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> {{ 'Nom' }} </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td> {{ formation.nameFormation }} </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ '0 Formation.' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

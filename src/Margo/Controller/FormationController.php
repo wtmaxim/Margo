@@ -9,25 +9,25 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class StudentController
+class FormationController
 {
 
     public function indexAction(Request $request, Application $app)
     {
         // Perform pagination logic.
         $limit = 10;
-        $total = $app['repository.etudiant']->getCount();
+        $total = $app['repository.formation']->getCount();
         $numPages = ceil($total / $limit);
         $currentPage = $request->query->get('page', 1);
         $offset = ($currentPage - 1) * $limit;
-        $etudiants = $app['repository.etudiant']->findAll($limit, $offset);
+        $formations = $app['repository.formation']->findAll($limit, $offset);
         $data = array(
-            'etudiants' => $etudiants,
+            'formations' => $formations,
             'currentPage' => $currentPage,
             'numPages' => $numPages,
-            'here' => $app['url_generator']->generate('etudiants'),
+            'here' => $app['url_generator']->generate('admin_etudiants'),
         );
-        return $app['twig']->render('student.html.twig', $data);
+        return $app['twig']->render('formation.html.twig', $data);
     }
 
 }
