@@ -57,6 +57,8 @@ $app->get('/admin/etudiants', 'Margo\Controller\AdminStudentController::indexAct
     ->bind('admin_etudiants');
 $app->match('/admin/etudiant/add', 'Margo\Controller\AdminStudentController::addAction')
     ->bind('admin_etudiant_add');
+$app->match('/admin/etudiant', 'Margo\Controller\AdminStudentController::orderBy')
+    ->bind('admin_etudiant_orderBy');
 $app->match('/admin/etudiants/{etudiant}/edit', 'Margo\Controller\AdminStudentController::editAction')
     ->bind('admin_etudiant_edit');
 $app->match('/admin/etudiants/{etudiant}/delete', 'Margo\Controller\AdminStudentController::deleteAction')

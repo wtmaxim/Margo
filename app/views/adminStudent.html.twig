@@ -12,14 +12,16 @@
       <tr>
          <th> {{ 'Nom' }} </th>
          <th> {{ 'Prenom' }} </th>
-         <th> {{ 'Classe' }} </th>
+         <th>
+            <a href="{{ path('admin_etudiant_orderBy') }}"> {{ 'Classe' }} </a>
+         </th>
          <th> {{ 'Action' }}</th>
       </tr>
       </thead>
       <tbody>
       {% for etudiant in etudiants %}
          <tr>
-            <td> {{ etudiant.name }} </td>
+            <td>{{ etudiant.name }} </td>
             <td> {{ etudiant.firstName }} </td>
             <td> {{ etudiant.category.categName }} </td>
             <td>

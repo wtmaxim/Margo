@@ -90,6 +90,30 @@ class EtudiantRepository implements RepositoryInterface
         return $etudiants;
     }
 
+    public function OrderByCateg($limit, $offset = 0, $orderBy = array())
+    {
+        // Provide a default orderBy.
+        if (!$orderBy) {
+            $orderBy = array('name' => 'ASC');
+        }
+
+        $queryBuilder = $this->db->createQueryBuilder();
+        $queryBuilder
+            ->select('e.*')
+            ->from('student', 'e')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->orderBy('student_category');
+        $statement = $queryBuilder->execute();
+        $etudiantsData = $statement->fetchAll();
+        $etudiants = array();
+        foreach ($etudiantsData as $etudiantData) {
+            $etudiantId = $etudiantData['id'];
+            $etudiants[$etudiantId] = $this->buildEtudiant($etudiantData);
+        }
+        return $etudiants;
+    }
+
     /**
      * Returns a collection of etudiant, sorted by name.
      *
