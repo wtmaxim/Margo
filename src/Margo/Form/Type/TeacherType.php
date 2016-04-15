@@ -2,6 +2,7 @@
 
 namespace Margo\Form\Type;
 
+use Margo\Entity\Subject;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,6 +12,7 @@ class TeacherType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('name', 'text', array(
                 'label' => ' ',
@@ -30,7 +32,7 @@ class TeacherType extends AbstractType
                 'label' => ' ',
                 'constraints' => new Assert\NotBlank(),
                 'attr' => array(
-                    'placeholder' => 'Matière',
+                    'placeholder' => 'Classe',
                 )
             ))
             ->add('Enregistrer', 'submit');

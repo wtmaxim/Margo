@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+{% set active = 'account' %}
+
+{% block title %}
+    Administration - Formations
+{% endblock %}
+
+{% block content %}
+    {% set alertTypeAvaillable = [ 'info', 'success', 'warning', 'error'] %}
+    {% for alert in alertTypeAvaillable %}
+        {% for message in app.session.getFlashBag.get(alert) %}
+            <div class="alert alert-{{ alert }}" >
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <a href="{{ path('admin_formation_add') }}" class="btn btn-add">{{ 'Ajouter une formation' }}</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th> {{ 'Formation' }} </th>
+            <th> {{ 'Action' }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td> {{ formation.nameFormation }} </td>
+                <td>
+                    <a href="{{ path('admin_formation_delete', {'formation': formation.nameFormation}) }}" class="btn btn-table btn-del">Supprimer</a>
+                    <a href="{{ path('admin_formation_edit', {'formation': formation.nameFormation}) }}" class="btn btn-table btn-edit">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>{{ '0 etudiant.' }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
