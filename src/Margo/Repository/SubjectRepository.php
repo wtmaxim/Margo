@@ -28,7 +28,7 @@ class SubjectRepository implements RepositoryInterface
             'name' => $subject->getNameSubject(),
             'timeVolume' => $subject->getTimeVolume(),
             'coefficient' => $subject->getCoefficient(),
-            'category' => $subject->getCategory()->getName()
+            'subject_category' => $subject->getCategory(),
         );
 
         if ($subject->getIdSubject()) {
@@ -74,7 +74,13 @@ class SubjectRepository implements RepositoryInterface
         return $subjectData ? $this->buildSubject($subjectData) : FALSE;
     }
 
-    /**
+    public function selectOneByNameCateg($nameCategory)
+    {
+        $subject = $this->db->fetchAssoc('SELECT * FROM subject WHERE subject_category = ?', array($nameCategory));
+        return $subject;
+    }
+
+        /**
      * Returns a collection of category, sorted by name.
      *
      * @param integer $limit

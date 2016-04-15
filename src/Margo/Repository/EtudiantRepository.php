@@ -84,9 +84,9 @@ class EtudiantRepository implements RepositoryInterface
      *
      */
 
-    public function selectOneByCateg($category)
+    public function selectOneByNameCateg($nameCategory)
     {
-        $etudiants = $this->db->fetchAssoc('SELECT * FROM student WHERE student_category = ?', array($category));
+        $etudiants = $this->db->fetchAssoc('SELECT * FROM student WHERE student_category = ?', array($nameCategory));
         return $etudiants;
     }
 

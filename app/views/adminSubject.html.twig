@@ -27,8 +27,8 @@
             <tr>
                 <td> {{ subject.nameSubject }} </td>
                 <td>
-                    <a href="{{ path('admin_subject_delete', {'matiere': subject.idSubject}) }}" class="btn btn-table btn-del">Supprimer</a>
-                    <a href="{{ path('admin_subject_edit', {'matiere': subject.idSubject}) }}" class="btn btn-table btn-edit">Editer</a>
+                    <a href="{{ path('admin_subject_delete', {'matiere': subject.nameSubject}) }}" class="btn btn-table btn-del">Supprimer</a>
+                    <a href="{{ path('admin_subject_edit', {'matiere': subject.nameSubject}) }}" class="btn btn-table btn-edit">Editer</a>
                 </td>
             </tr>
         {% else %}

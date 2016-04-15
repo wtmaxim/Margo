@@ -27,8 +27,8 @@
             <tr>
                 <td> {{ classe.categName }} </td>
                 <td>
-                    <a href="{{ path('admin_category_delete', {'classe': classe.categId}) }}" class="btn btn-table btn-del">Supprimer</a>
-                    <a href="{{ path('admin_category_edit', {'classe': classe.categId}) }}" class="btn btn-table btn-edit">Editer</a>
+                    <a href="{{ path('admin_category_delete', {'classe': classe.categName}) }}" class="btn btn-table btn-del">Supprimer</a>
+                    <a href="{{ path('admin_category_edit', {'classe': classe.categName}) }}" class="btn btn-table btn-edit">Editer</a>
                 </td>
             </tr>
         {% else %}

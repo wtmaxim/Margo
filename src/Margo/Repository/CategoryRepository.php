@@ -49,7 +49,7 @@ class CategoryRepository implements RepositoryInterface
      */
     public function delete($classe)
     {
-        return $this->db->delete('category', array('id' => $classe->getCategId()));
+        return $this->db->delete('category', array('name' => $classe->getCategName()));
     }
 
     /**
