@@ -28,6 +28,8 @@ class AdminStudentController
             'here' => $app['url_generator']->generate('admin_etudiants'),
         );
         return $app['twig']->render('adminStudent.html.twig', $data);
+
+
     }
 
     public function addAction(Request $request, Application $app)
