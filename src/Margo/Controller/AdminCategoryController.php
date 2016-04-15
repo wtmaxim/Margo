@@ -82,12 +82,18 @@ class AdminCategoryController
             $app->abort(404, 'La classe n\'a pas été trouvé.');
         }
 
-        $student = $app['repository.etudiant']->selectOneByIdCateg($classe->getCategId());
+        $student = $app['repository.etudiant']->selectOneByNameCateg($classe->getCategName());
+        $subject = $app['repository.subject']->selectOneByNameCateg($classe->getCategName());
         if (!empty($student)) {
             $message = 'Impossible de supprimer : un ou plusieurs étudiants sont inscrits à cette classe';
             $app['session']->getFlashBag()->add('error', $message);
+        } else if (!empty($subject)) {
+            $message = 'Impossible de supprimer : la matière est suivi par un ou plusieurs classes';
+            $app['session']->getFlashBag()->add('error', $message);
         } else {
             $app['repository.category']->delete($classe);
+            $message = 'Suppression du cours';
+            $app['session']->getFlashBag()->add('success', $message);
         }
 
         return $app->redirect($app['url_generator']->generate('admin_categories'));

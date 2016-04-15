@@ -81,7 +81,7 @@ class AdminSubjectController
             $app->abort(404, 'The requested subject was not found.');
         }
 
-        $profs = $app['repository.prof']->selectOneByIdSubject($subject->getIdSubject());
+        $profs = $app['repository.prof']->selectOneByNameSubject($subject->getNameSubject());
         if (!empty($profs)) {
             $message = 'Impossible de supprimer : un ou plusieurs professeurs sont inscrits à ce cours';
             $app['session']->getFlashBag()->add('error', $message);

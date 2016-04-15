@@ -119,9 +119,9 @@ class ProfRepository implements RepositoryInterface
      *
      */
 
-    public function selectOneByIdSubject($idSubject)
+    public function selectOneByNameSubject($nameSubject)
     {
-        $profs = $this->db->fetchAssoc('SELECT * FROM teacher WHERE idSubject = ?', array($idSubject));
+        $profs = $this->db->fetchAssoc('SELECT * FROM teacher WHERE teacher_subject = ?', array($nameSubject));
         return $profs;
     }
 

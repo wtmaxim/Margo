@@ -33,6 +33,13 @@ class SubjectType extends AbstractType
                     'placeholder' => '1',
                 )
             ))
+            ->add('category', 'text', array(
+                'label' => ' ',
+                'constraints' => new Assert\NotBlank(),
+                'attr' => array(
+                    'placeholder' => 'SIOB',
+                )
+            ))
             ->add('Enregistrer', 'submit');
     }
 
