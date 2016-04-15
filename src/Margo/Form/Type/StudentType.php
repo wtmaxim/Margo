@@ -28,6 +28,14 @@ class StudentType extends AbstractType
                     'placeholder' => 'Prénom',
                 )
             ))
+            ->add('category', 'text', array(
+                'label' => ' ',
+                'constraints' => new Assert\NotBlank(),
+                'attr' => array(
+                    'placeholder' => 'Classe',
+                )
+            ))
+
             ->add('Enregistrer', 'submit');
     }
 

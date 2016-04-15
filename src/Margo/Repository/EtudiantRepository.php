@@ -33,7 +33,7 @@ class EtudiantRepository implements RepositoryInterface
         $etudiantData = array(
             'name' => $etudiant->getName(),
             'firstname' => $etudiant->getFirstName(),
-            'category' => $etudiant->getCategory()->getCategName(),
+            'student_category' => $etudiant->getCategory(),
         );
 
         if ($etudiant->getStudentId()) {

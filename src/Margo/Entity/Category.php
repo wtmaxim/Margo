@@ -76,5 +76,7 @@ class Category
     {
         $this->categName = $categName;
     }
-
+    public function __toString() {
+        return $this->categName;
+    }
 }
