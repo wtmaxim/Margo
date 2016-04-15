@@ -111,4 +111,8 @@ class Subject
     {
         $this->category = $category;
     }
+
+    public function __toString() {
+        return $this->nameSubject;
+    }
 }
