@@ -12,6 +12,7 @@
             <th> {{ 'Nom' }} </th>
             <th> {{ 'Volume' }} </th>
             <th> {{ 'Coefficient' }} </th>
+            <th> {{ 'Catégorie' }} </th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                 <td> {{ subject.nameSubject }} </td>
                 <td> {{ subject.timeVolume }} </td>
                 <td> {{ subject.coefficient }} </td>
+                <td> {{ subject.category.categName }} </td>
             </tr>
         {% else %}
             <tr>

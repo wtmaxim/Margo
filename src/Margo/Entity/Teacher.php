@@ -7,6 +7,9 @@ class Teacher
     private $teacherId;
     private $firstName;
     private $name;
+
+    /*  type Subject*/
+
     private $subject;
 
     /**

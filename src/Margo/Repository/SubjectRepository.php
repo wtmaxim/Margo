@@ -9,12 +9,13 @@ class SubjectRepository implements RepositoryInterface
 {
 
     protected $db;
+    protected $CategoryRepository;
 
-    public function __construct(Connection $db)
+    public function __construct(Connection $db, CategoryRepository $CategoryRepository)
     {
         $this->db = $db;
+        $this->CategoryRepository = $CategoryRepository;
     }
-
     /**
      * Saves the category to the database.
      *
@@ -26,7 +27,8 @@ class SubjectRepository implements RepositoryInterface
             'id' => $subject->getIdSubject(),
             'name' => $subject->getNameSubject(),
             'timeVolume' => $subject->getTimeVolume(),
-            'coefficient' => $subject->getCoefficient()
+            'coefficient' => $subject->getCoefficient(),
+            'category' => $subject->getCategory()->getName()
         );
 
         if ($subject->getIdSubject()) {
@@ -66,9 +68,9 @@ class SubjectRepository implements RepositoryInterface
      *
      * @return \Margo\Entity\Category|false An entity object if found, false otherwise.
      */
-    public function find($id)
+    public function find($name)
     {
-        $subjectData = $this->db->fetchAssoc('SELECT * FROM subject WHERE id = ?', array($id));
+        $subjectData = $this->db->fetchAssoc('SELECT * FROM subject WHERE name = ?', array($name));
         return $subjectData ? $this->buildSubject($subjectData) : FALSE;
     }
 
@@ -117,12 +119,14 @@ class SubjectRepository implements RepositoryInterface
      */
     protected function buildSubject($subjectData)
     {
+        $category = $this->CategoryRepository->find($subjectData['subject_category']);
+
         $subject = new Subject();
         $subject->setIdSubject($subjectData['id']);
         $subject->setNameSubject($subjectData['name']);
-        $subject->setIdCategory($subjectData['idCategory']);
         $subject->setTimeVolume($subjectData['timeVolume']);
         $subject->setCoefficient($subjectData['coefficient']);
+        $subject->setCategory($category);
         return $subject;
     }
 

@@ -13,8 +13,9 @@ class Subject
     private $nameSubject;
     private $timeVolume;
     private $coefficient;
+
+    /* type Category */
     private $category;
-    private $teacher;
 
     /**
      * Subject constructor.
@@ -23,6 +24,7 @@ class Subject
      * @param $nameSubject
      * @param $coefficient
      */
+
 
     public function __construct()
     {
@@ -109,10 +111,4 @@ class Subject
     {
         $this->category = $category;
     }
-
-    public function getTeacher()
-    {
-        return $this->teacher;
-    }
-
 }

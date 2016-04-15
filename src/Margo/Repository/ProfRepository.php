@@ -14,10 +14,12 @@ class ProfRepository implements RepositoryInterface
      * @var \Doctrine\DBAL\Connection
      */
     protected $db;
+    protected $SubjectRepository;
 
-    public function __construct(Connection $db)
+    public function __construct(Connection $db, SubjectRepository $SubjectRepository)
     {
         $this->db = $db;
+        $this->SubjectRepository = $SubjectRepository;
     }
 
     /**
@@ -70,9 +72,9 @@ class ProfRepository implements RepositoryInterface
      *
      * @return \Margo\Entity\Etudiant|false An entity object if found, false otherwise.
      */
-    public function find($id)
+    public function find($name)
     {
-        $profData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
+        $profData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE teacher_subject = ?', array($name));
         return $profData ? $this->buildTeacher($profData) : FALSE;
     }
 
@@ -133,12 +135,13 @@ class ProfRepository implements RepositoryInterface
      */
     protected function buildTeacher($profData)
     {
+        $subject = $this->SubjectRepository->find($profData['teacher_subject']);
 
         $prof = new Teacher();
         $prof->setTeacherId($profData['id']);
         $prof->setName($profData['name']);
         $prof->setFirstName($profData['firstName']);
-        $prof->setIdSubject($profData['idSubject']);
+        $prof->setSubject($subject);
         return $prof;
     }
 }

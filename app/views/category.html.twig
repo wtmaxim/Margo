@@ -10,12 +10,14 @@
         <thead>
         <tr>
             <th> {{ 'Classe' }} </th>
+            <th> {{ 'Formation' }} </th>
         </tr>
         </thead>
         <tbody>
         {% for classe in classes %}
             <tr>
                 <td> {{ classe.categName }} </td>
+                <td> {{ classe.formation.nameFormation }} </td>
             </tr>
         {% else %}
             <tr>
