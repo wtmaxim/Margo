@@ -12,7 +12,7 @@ class CategoryRepository implements RepositoryInterface
     protected $formationRepository;
 
 
-    public function __construct(Connection $db,  $formationRepository)
+    public function __construct(Connection $db,  FormationRepository $formationRepository)
     {
         $this->db = $db;
         $this->formationRepository = $formationRepository;

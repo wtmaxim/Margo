@@ -47,13 +47,13 @@ $app['repository.etudiant'] = $app->share(function ($app) {
     return new Margo\Repository\EtudiantRepository($app['db'], $app['repository.category']);
 });
 $app['repository.prof'] = $app->share(function ($app) {
-    return new Margo\Repository\ProfRepository($app['db'], $app['security.encoder.digest']);
+    return new Margo\Repository\ProfRepository($app['db'], $app['repository.subject'], $app['security.encoder.digest']);
 });
 $app['repository.category'] = $app->share(function ($app) {
     return new Margo\Repository\CategoryRepository($app['db'],$app['repository.formation'], $app['security.encoder.digest']);
 });
 $app['repository.subject'] = $app->share(function ($app) {
-    return new Margo\Repository\SubjectRepository($app['db'], $app['security.encoder.digest']);
+    return new Margo\Repository\SubjectRepository($app['db'], $app['repository.category'], $app['security.encoder.digest']);
 });
 
 $app['repository.user'] = $app->share(function ($app) {

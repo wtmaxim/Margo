@@ -14,10 +14,12 @@ class ProfRepository implements RepositoryInterface
      * @var \Doctrine\DBAL\Connection
      */
     protected $db;
+    protected $SubjectRepository;
 
-    public function __construct(Connection $db)
+    public function __construct(Connection $db, SubjectRepository $SubjectRepository)
     {
         $this->db = $db;
+        $this->SubjectRepository = $SubjectRepository;
     }
 
     /**
@@ -30,7 +32,7 @@ class ProfRepository implements RepositoryInterface
         $profData = array(
             'name' => $prof->getName(),
             'firstname' => $prof->getFirstName(),
-            'idSubject' => $prof->getIdSubject(),
+            'teacher_subject' => $prof->getSubject(),
         );
 
         if ($prof->getTeacherId()) {
@@ -133,12 +135,13 @@ class ProfRepository implements RepositoryInterface
      */
     protected function buildTeacher($profData)
     {
+        $subject = $this->SubjectRepository->find($profData['teacher_subject']);
 
         $prof = new Teacher();
         $prof->setTeacherId($profData['id']);
         $prof->setName($profData['name']);
         $prof->setFirstName($profData['firstName']);
-        $prof->setIdSubject($profData['idSubject']);
+        $prof->setSubject($subject);
         return $prof;
     }
 }
