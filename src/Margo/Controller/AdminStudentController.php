@@ -87,4 +87,25 @@ class AdminStudentController
         return $app->redirect($app['url_generator']->generate('admin_etudiants'));
     }
 
+
+    public function orderBy(Request $request, Application $app)
+    {
+        $limit = 10;
+        $total = $app['repository.etudiant']->getCount();
+        $numPages = ceil($total / $limit);
+        $currentPage = $request->query->get('page', 1);
+        $offset = ($currentPage - 1) * $limit;
+        $etudiants = $app['repository.etudiant']->orderByCateg($limit, $offset);
+        $data = array(
+            'etudiants' => $etudiants,
+            'currentPage' => $currentPage,
+            'numPages' => $numPages,
+            'here' => $app['url_generator']->generate('admin_etudiants'),
+        );
+
+
+        return $app['twig']->render('adminStudent.html.twig', $data);
+    }
+
+
 }
