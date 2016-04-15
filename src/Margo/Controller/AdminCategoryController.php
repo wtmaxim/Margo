@@ -3,6 +3,7 @@
 namespace Margo\Controller;
 
 use Margo\Entity\Category;
+use Margo\Entity\Subject;
 use Margo\Form\Type\CategoryType;
 use Silex\Application;
 use Symfony\Component\Form\FormError;
@@ -47,29 +48,29 @@ class AdminCategoryController
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Ajout d\'un prof',
+            'title' => 'Ajout d\'une classe',
         );
         return $app['twig']->render('form.html.twig', $data);
     }
 
     public function editAction(Request $request, Application $app)
     {
-        $category = $request->attributes->get('classe');
-        if (!$category) {
-            $app->abort(404, 'La classe n\'a pas été trouvé.');
+        $classe = $request->attributes->get('classe');
+        if (!$classe) {
+            $app->abort(404, 'La  classe n\'a pas été trouvé.');
         }
-        $form = $app['form.factory']->create(new CategoryType(), $category);
+        $form = $app['form.factory']->create(new SubjectType(), $classe);
         if ($request->isMethod('POST')) {
             $form->bind($request);
             if ($form->isValid()) {
-                $app['repository.category']->save($category);
+                $app['repository.category']->save($classe);
                 $message = 'La classe à été modifié !.';
                 $app['session']->getFlashBag()->add('success', $message);
             }
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Edition d\'une classe',
+            'title' => 'Edition d\'un étudiant',
         );
         return $app['twig']->render('form.html.twig', $data);
     }
@@ -78,7 +79,7 @@ class AdminCategoryController
     {
         $classe = $request->attributes->get('classe');
         if (!$classe) {
-            $app->abort(404, 'The requested prof was not found.');
+            $app->abort(404, 'La classe n\'a pas été trouvé.');
         }
 
         $student = $app['repository.etudiant']->selectOneByIdCateg($classe->getCategId());

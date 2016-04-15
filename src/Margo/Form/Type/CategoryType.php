@@ -19,7 +19,7 @@ class CategoryType extends AbstractType
                     'placeholder' => '2SLAM',
                 )
             ))
-            ->add('idFormation', 'text', array(
+            ->add('formation', 'text', array(
                 'label' => ' ',
                 'constraints' => new Assert\NotBlank(),
                 'attr' => array(

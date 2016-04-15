@@ -44,7 +44,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 // Register repositories.
 $app['repository.etudiant'] = $app->share(function ($app) {
-    return new Margo\Repository\EtudiantRepository($app['db'], $app['repository.category']);
+    return new Margo\Repository\EtudiantRepository($app['db'], $app['repository.category'],$app['security.encoder.digest']);
 });
 $app['repository.prof'] = $app->share(function ($app) {
     return new Margo\Repository\ProfRepository($app['db'], $app['repository.subject'], $app['security.encoder.digest']);

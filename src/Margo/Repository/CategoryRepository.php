@@ -28,7 +28,7 @@ class CategoryRepository implements RepositoryInterface
     {
         $categoryData = array(
             'name' => $category->getCategName(),
-            'formation' => $category->getFormation(),
+            'categ_formation' => $category->getFormation(),
         );
 
         if ($category->getCategId()) {

@@ -66,7 +66,7 @@ class AdminStudentController
             $form->bind($request);
             if ($form->isValid()) {
                 $app['repository.etudiant']->save($etudiant);
-                $message = 'L\étudiant à été modifié !.';
+                $message = 'L\'étudiant à été modifié !.';
                 $app['session']->getFlashBag()->add('success', $message);
             }
         }
