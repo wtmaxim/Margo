@@ -15,12 +15,12 @@ class EtudiantRepository implements RepositoryInterface
      * @var \Doctrine\DBAL\Connection
      */
     protected $db;
-    protected $categoryRepository;
+    protected $CategoryRepository;
 
-    public function __construct(Connection $db, $categoryRepository)
+    public function __construct(Connection $db, CategoryRepository $CategoryRepository)
     {
         $this->db = $db;
-        $this->categoryRepository = $categoryRepository;
+        $this->CategoryRepository = $CategoryRepository;
     }
 
     /**
@@ -137,8 +137,7 @@ class EtudiantRepository implements RepositoryInterface
     protected function buildEtudiant($etudiantData)
     {
 
-        $category = $this->categoryRepository->find($etudiantData['idCategory']);
-
+        $category = $this->CategoryRepository->find($etudiantData['student_category']);
         $etudiant = new Student();
         $etudiant->setStudentId($etudiantData['id']);
         $etudiant->setName($etudiantData['name']);

@@ -9,10 +9,14 @@ class CategoryRepository implements RepositoryInterface
 {
 
     protected $db;
+    protected $formationRepository;
 
-    public function __construct(Connection $db)
+
+    public function __construct(Connection $db,  $formationRepository)
     {
         $this->db = $db;
+        $this->formationRepository = $formationRepository;
+
     }
 
     /**
@@ -64,9 +68,9 @@ class CategoryRepository implements RepositoryInterface
      *
      * @return \Margo\Entity\Category|false An entity object if found, false otherwise.
      */
-    public function find($id)
+    public function find($name)
     {
-        $categoryData = $this->db->fetchAssoc('SELECT * FROM category WHERE id = ?', array($id));
+        $categoryData = $this->db->fetchAssoc('SELECT * FROM category WHERE name = ?', array($name));
         return $categoryData ? $this->buildCategory($categoryData) : FALSE;
     }
 
@@ -116,10 +120,12 @@ class CategoryRepository implements RepositoryInterface
      */
     protected function buildCategory($categoryData)
     {
+        $formation = $this->formationRepository->find($categoryData['categ_formation']);
+
         $category = new Category();
         $category->setCategId($categoryData['id']);
         $category->setCategName($categoryData['name']);
-        $category->setFormation($categoryData['formation']);
+        $category->setFormation($formation);
         return $category;
     }
 

@@ -63,9 +63,9 @@ class FormationRepository implements RepositoryInterface
      *
      * @return \Margo\Entity\Category|false An entity object if found, false otherwise.
      */
-    public function find($id)
+    public function find($name)
     {
-        $formationData = $this->db->fetchAssoc('SELECT * FROM formation WHERE id = ?', array($id));
+        $formationData = $this->db->fetchAssoc('SELECT * FROM formation WHERE name = ?', array($name));
         return $formationData ? $this->buildFormation($formationData) : FALSE;
     }
 

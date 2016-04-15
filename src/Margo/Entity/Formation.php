@@ -1,4 +1,5 @@
 <?php
+namespace Margo\Entity;
 /**
  * Created by PhpStorm.
  * User: Dinam
@@ -15,10 +16,9 @@ class Formation
      * @param $idFormation
      * @param $nameFormation
      */
-    public function __construct($idFormation, $nameFormation)
+    public function __construct()
     {
-        $this->idFormation = $idFormation;
-        $this->nameFormation = $nameFormation;
+
     }
 
     /**
