@@ -2,6 +2,7 @@
 
 namespace Margo\Controller;
 
+use Margo\Entity\Category;
 use Margo\Entity\Student;
 use Margo\Form\Type\StudentType;
 use Silex\Application;
