@@ -32,7 +32,7 @@ class ProfRepository implements RepositoryInterface
         $profData = array(
             'name' => $prof->getName(),
             'firstname' => $prof->getFirstName(),
-            'idSubject' => $prof->getIdSubject(),
+            'teacher_subject' => $prof->getSubject(),
         );
 
         if ($prof->getTeacherId()) {
@@ -72,9 +72,9 @@ class ProfRepository implements RepositoryInterface
      *
      * @return \Margo\Entity\Etudiant|false An entity object if found, false otherwise.
      */
-    public function find($name)
+    public function find($id)
     {
-        $profData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE teacher_subject = ?', array($name));
+        $profData = $this->db->fetchAssoc('SELECT * FROM teacher WHERE id = ?', array($id));
         return $profData ? $this->buildTeacher($profData) : FALSE;
     }
 

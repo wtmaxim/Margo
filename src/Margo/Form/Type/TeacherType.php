@@ -26,11 +26,11 @@ class TeacherType extends AbstractType
                     'placeholder' => 'Prénom',
                 )
             ))
-            ->add('idSubject', 'text', array(
+            ->add('subject', 'text', array(
                 'label' => ' ',
                 'constraints' => new Assert\NotBlank(),
                 'attr' => array(
-                    'placeholder' => 'Cours',
+                    'placeholder' => 'Matière',
                 )
             ))
             ->add('Enregistrer', 'submit');

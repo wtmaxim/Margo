@@ -17,7 +17,8 @@
             <tr>
                 <td> {{ prof.name }} </td>
                 <td> {{ prof.firstName }} </td>
-                <td> {{ prof.idSubject }} </td>
+                <td> {{ prof.subject.nameSubject }} </td>
+
                 <td>
                     <a href="{{ path('admin_teacher_delete', {'prof': prof.teacherId}) }}" class="btn btn-table btn-del">delete</a>
                     <a href="{{ path('admin_teacher_edit', {'prof': prof.teacherId}) }}" class="btn btn-table btn-edit">Editer</a>
