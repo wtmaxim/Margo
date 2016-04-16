@@ -70,6 +70,10 @@ $app->before(function (Request $request) use ($app) {
     $protected = array(
         '/admin/' => 'ROLE_ADMIN',
         '/etudiant' => 'ROLE_USER',
+        '/profs' => 'ROLE_USER',
+        '/formations' => 'ROLE_USER',
+        '/classes' => 'ROLE_USER',
+        '/cours' => 'ROLE_USER'
     );
     $path = $request->getPathInfo();
     foreach ($protected as $protectedPath => $role) {
