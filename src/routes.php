@@ -119,3 +119,8 @@ $app->match('/admin/formation/{formation}/edit', 'Margo\Controller\AdminFormatio
     ->bind('admin_formation_edit');
 $app->match('/admin/formation/{formation}/delete', 'Margo\Controller\AdminFormationController::deleteAction')
     ->bind('admin_formation_delete');
+
+$app->error(function () use ($app) {
+    return $app['twig']->render('Exception\error404.html.twig');
+});
+
