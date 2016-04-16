@@ -8,6 +8,7 @@
     <link href="{{ app.request.basepath }}/css/alert.css" rel="stylesheet" type='text/css'>
     <link href="{{ app.request.basepath }}/css/button.css" rel="stylesheet" type='text/css'>
     <link href="{{ app.request.basepath }}/css/style.css" rel="stylesheet" type='text/css'>
+    <link href="{{ app.request.basepath }}/css/animate.css" rel="stylesheet" type='text/css'>
 </head>
 <body>
 
@@ -15,7 +16,7 @@
     {% set active = active|default(null) %}
 
     <div class="logo">
-        <img src="{{ app.request.basepath }}/img/logo-red.png">
+        <a href="{{ path('homepage') }}"><img src="{{ app.request.basepath }}/img/logo-red.png"></a>
     </div>
     <div class="title">
         {% block title %}
@@ -96,7 +97,7 @@
 </section>
 
 <footer>
-
+    Made with <i class="fa fa-heart heart"></i> by DERAME Maxime, DINAM Noël, CHATELLIER Clément - 2016, Margo
 </footer>
 
 </body>

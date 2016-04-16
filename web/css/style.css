@@ -4,7 +4,17 @@
 body {
     background-image: url("../img/bg.png")
 }
-
+/*
+* MENU DESCRIPTION
+*/
+.desc{
+    text-align: justify;
+    margin-right: 5%;
+}
+.bvn{
+    color: #e74c3c;
+    font-size: 50px;
+ }
 /**
 * HEADER
 */
@@ -203,3 +213,24 @@ button {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #aaa;
 }
+/*----------
+* FOOTER
+-----------*/
+footer {
+    width: 87.5%;
+    float: left;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    background-color: #fff;
+    position: fixed;
+    color: #2c3e50;
+    bottom: 0;
+    margin-left: 12.5%;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+footer .heart{
+    color:#e74c3c;
+}
+
