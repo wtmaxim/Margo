@@ -120,7 +120,15 @@ $app->match('/admin/formation/{formation}/edit', 'Margo\Controller\AdminFormatio
 $app->match('/admin/formation/{formation}/delete', 'Margo\Controller\AdminFormationController::deleteAction')
     ->bind('admin_formation_delete');
 
-$app->error(function () use ($app) {
-    return $app['twig']->render('Exception\error404.html.twig');
+//page404
+$app->error(function (\Exception $e, $code) use ($app) {
+    switch ($code) {
+        case 404:
+            return $app['twig']->render('/Exception/error404.html.twig');
+            break;
+        default:
+            $message = 'We are sorry, but something went terribly wrong.';
+    }
 });
+
 

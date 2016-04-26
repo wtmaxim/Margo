@@ -1,6 +1,10 @@
 {% extends 'layout.html.twig' %}
 {% set active = 'account' %}
 
+{% block title %}
+    Administration - Professeur
+{% endblock %}
+
 {% block content %}
     <a href="{{ path('admin_teacher_add') }}" class="btn btn-add">{{ 'Ajouter un prof' }}</a>
     <table class="table table-hover">

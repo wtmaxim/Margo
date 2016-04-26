@@ -13,7 +13,7 @@ $app['twig.options.cache'] = $app['cache.path'] . '/twig';
 $app['db.options'] = array(
     'driver'   => 'pdo_mysql',
     'host'     => 'localhost',
-    'dbname'   => 'margo2',
+    'dbname'   => 'margo',
     'user'     => 'root',
     'password' => '',
 );

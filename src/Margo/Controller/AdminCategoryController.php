@@ -8,6 +8,7 @@ use Margo\Form\Type\CategoryType;
 use Silex\Application;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use Margo\Test\TestEntity;
 
 class AdminCategoryController
 {
@@ -70,7 +71,7 @@ class AdminCategoryController
         }
         $data = array(
             'form' => $form->createView(),
-            'title' => 'Edition d\'un étudiant',
+            'title' => 'Edition d\'une classe',
         );
         return $app['twig']->render('form.html.twig', $data);
     }
