@@ -86,9 +86,9 @@ $app->get('/admin/users', 'Margo\Controller\UserController::indexAction')
     ->bind('admin_users');
 $app->match('/admin/users/add', 'Margo\Controller\UserController::addAction')
     ->bind('admin_user_add');
-$app->match('/admin/users/{user}/edit', 'Margo\Controller\AdminUserController::editAction')
+$app->match('/admin/users/{user}/edit', 'Margo\Controller\UserController::editAction')
     ->bind('admin_user_edit');
-$app->match('/admin/users/{user}/delete', 'Margo\Controller\AdminUserController::deleteAction')
+$app->match('/admin/users/{user}/delete', 'Margo\Controller\UserController::deleteAction')
     ->bind('admin_user_delete');
 
 //admin route classe
@@ -130,5 +130,3 @@ $app->error(function (\Exception $e, $code) use ($app) {
             $message = 'We are sorry, but something went terribly wrong.';
     }
 });
-
-

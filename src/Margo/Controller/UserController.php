@@ -98,4 +98,36 @@ class UserController
         return $app['twig']->render('form.html.twig', $data);
     }
 
+    public function editAction(Request $request, Application $app)
+    {
+        $user = $request->attributes->get('user');
+        if (!$user) {
+            $app->abort(404, 'La requête user n\'a pas été trouvé.');
+        }
+        $form = $app['form.factory']->create(new UserType(), $user);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $app['repository.user']->save($user);
+                $message = "L'utilisateur été modifié !.";
+                $app['session']->getFlashBag()->add('success', $message);
+            }
+        }
+        $data = array(
+            'form' => $form->createView(),
+            'title' => 'Edition d\'un utilisateur',
+        );
+        return $app['twig']->render('form.html.twig', $data);
+    }
+
+    public function deleteAction(Request $request, Application $app)
+    {
+        $user = $request->attributes->get('user');
+        if (!$user) {
+            $app->abort(404, 'The requested user was not found.');
+        }
+        $app['repository.user']->delete($user);
+        return $app->redirect($app['url_generator']->generate('admin_users'));
+    }
+
 }

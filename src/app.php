@@ -69,6 +69,7 @@ $app['repository.formation'] = $app->share(function ($app) {
 $app->before(function (Request $request) use ($app) {
     $protected = array(
         '/admin/' => 'ROLE_ADMIN',
+        '/admin'  =>  'ROLE_ADMIN',
         '/etudiant' => 'ROLE_USER',
         '/profs' => 'ROLE_USER',
         '/formations' => 'ROLE_USER',
