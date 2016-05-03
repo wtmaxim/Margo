@@ -4,6 +4,8 @@ namespace Margo\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SubjectType extends AbstractType
@@ -11,10 +13,18 @@ class SubjectType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        $app = $options["app"];
+
+
+
         $builder
             ->add('nameSubject', 'text', array(
                 'label' => ' ',
-                'constraints' => new Assert\NotBlank(),
+                'constraints'   =>  array(
+                    new Assert\NotBlank(),
+                    //new UniqueEntity(),
+                ),
                 'attr' => array(
                     'placeholder' => 'SLAM4',
                 )

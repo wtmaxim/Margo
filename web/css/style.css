@@ -33,7 +33,7 @@ header {
         height: 75px;
         margin-left: 5%
     }
-    
+
     header .title {
         float: left;
         line-height: 80px;
@@ -104,6 +104,9 @@ nav {
 section {
     padding-top: 130px;
     padding-left: 25%;
+}
+form {
+  margin-bottom: 10%;
 }
 
 /**
@@ -233,4 +236,3 @@ footer {
 footer .heart{
     color:#e74c3c;
 }
-

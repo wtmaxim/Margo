@@ -32,6 +32,7 @@ class AdminSubjectController
 
     public function addAction(Request $request, Application $app)
     {
+
         $subject = new Subject();
         $form = $app['form.factory']->create(new SubjectType(), $subject);
         if ($request->isMethod('POST')) {
