@@ -13,9 +13,9 @@ $app['twig.options.cache'] = $app['cache.path'] . '/twig';
 $app['db.options'] = array(
     'driver'   => 'pdo_mysql',
     'host'     => 'localhost',
-    'dbname'   => 'margo3',
+    'dbname'   => 'margo2',
     'user'     => 'root',
-    'password' => 'mysql',
+    'password' => '',
     'driverOptions' => array(
         1002=>'SET NAMES utf8'
     )

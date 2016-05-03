@@ -108,7 +108,7 @@ class SubjectRepository implements RepositoryInterface
             ->orderBy(key($orderBy), current($orderBy));
         $statement = $queryBuilder->execute();
         $subjectsData = $statement->fetchAll();
-        $subject = array();
+        $subjects = array();
         foreach ($subjectsData as $subjectData) {
             $subjectId = $subjectData['id'];
             $subjects[$subjectId] = $this->buildSubject($subjectData);
