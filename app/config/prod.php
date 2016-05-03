@@ -12,8 +12,8 @@ $app['twig.options.cache'] = $app['cache.path'] . '/twig';
 // Doctrine (db)
 $app['db.options'] = array(
     'driver'   => 'pdo_mysql',
-    'host'     => 'localhost',
-    'dbname'   => 'margo2',
-    'user'     => 'root',
-    'password' => '',
+    'host'     => '127.0.0.1',
+    'dbname'   => 'ndinam_margo',
+    'user'     => 'ndinam_margo',
+    'password' => 'Ndin@m1',
 );
