@@ -34,15 +34,23 @@ class AdminTeacherController
     {
         $teacher = new Teacher();
         $form = $app['form.factory']->create(new TeacherType(), $teacher);
+        
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            if ($form->isValid()) {
+            $name = $teacher->getSubject();
+            $subject = $app['repository.subject']->selectOneByName($name);
+
+
+            if ($form->isValid()&& !empty($subject) ) {
                 $app['repository.prof']->save($teacher);
                 $message = 'Le prof ' . $teacher->getName() . ' à été ajouté.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
                 $redirect = $app['url_generator']->generate('admin_teacher_add', array('prof' => $teacher->getTeacherId()));
                 return $app->redirect($redirect);
+            }else {
+               $message = 'La classe inscrite n\'existe pas.';
+               $app['session']->getFlashBag()->add('error', $message);
             }
         }
         $data = array(

@@ -109,9 +109,21 @@ class CategoryRepository implements RepositoryInterface
         }
         return $categorys;
     }
+    /*
+     *   retourne une classe qui a pour formation, la formation passé en paramètre
+     *   
+     */
     public function selectOneByNameFormation($nameFormation)
     {
         $category = $this->db->fetchAssoc('SELECT * FROM category WHERE categ_formation = ?', array($nameFormation));
+        return $category;
+    }
+    /**
+     *  Retourne une classe qui a pour nom, le nom donné paramètre    
+     */
+    public function selectOneByNameCateg($nameCateg)
+    {
+        $category = $this->db->fetchAssoc('SELECT * FROM category WHERE name = ?', array($nameCateg));
         return $category;
     }
     /**

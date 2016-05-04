@@ -39,13 +39,23 @@ class AdminStudentController
         $form = $app['form.factory']->create(new StudentType(), $etudiant);
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            if ($form->isValid()) {
+            $name = $etudiant->getCategory();
+            $category = $app['repository.category']->selectOneByNameCateg($name);
+
+
+            if ($form->isValid()&& !empty($category) ) {
+                
+                
                 $app['repository.etudiant']->save($etudiant);
                 $message = 'L\' étudiant ' . $etudiant->getName() . ' à été ajouté.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
                 $redirect = $app['url_generator']->generate('admin_etudiant_add', array('etudiant' => $etudiant->getStudentId()));
-                return $app->redirect($redirect);
+//                return $app->redirect($redirect);
+            }else {
+               $message = 'La classe inscrite n\'existe pas.';
+               $app['session']->getFlashBag()->add('error', $message);
+
             }
         }
         $data = array(

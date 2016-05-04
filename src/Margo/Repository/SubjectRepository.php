@@ -79,6 +79,11 @@ class SubjectRepository implements RepositoryInterface
         $subject = $this->db->fetchAssoc('SELECT * FROM subject WHERE subject_category = ?', array($nameCategory));
         return $subject;
     }
+    public function selectOneByName($nameSubject)
+    {
+        $category = $this->db->fetchAssoc('SELECT * FROM subject WHERE name = ?', array($nameSubject));
+        return $category;
+    }
 
         /**
      * Returns a collection of category, sorted by name.

@@ -10,11 +10,9 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Margo\Test\TestEntity;
 
-class AdminCategoryController
-{
+class AdminCategoryController {
 
-    public function indexAction(Request $request, Application $app)
-    {
+    public function indexAction(Request $request, Application $app) {
         // Perform pagination logic.
         $limit = 10;
         $total = $app['repository.category']->getCount();
@@ -29,22 +27,25 @@ class AdminCategoryController
             'here' => $app['url_generator']->generate('admin_categories'),
         );
         return $app['twig']->render('adminCategory.html.twig', $data);
-
     }
 
-    public function addAction(Request $request, Application $app)
-    {
+    public function addAction(Request $request, Application $app) {
         $category = new Category();
         $form = $app['form.factory']->create(new CategoryType(), $category);
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            if ($form->isValid()) {
+            $name = $category->getFormation();
+            $formation = $app['repository.formation']->selectOneByNameFormation($name);
+            if ($form->isValid() && !empty($formation)) {
                 $app['repository.category']->save($category);
                 $message = 'La classe ' . $category->getCategName() . ' à été ajouté.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
                 $redirect = $app['url_generator']->generate('admin_category_add', array('category' => $category->getCategId()));
                 return $app->redirect($redirect);
+            } else {
+                $message = 'La formation inscrite n\'existe pas.';
+                $app['session']->getFlashBag()->add('error', $message);
             }
         }
         $data = array(
@@ -54,8 +55,7 @@ class AdminCategoryController
         return $app['twig']->render('form.html.twig', $data);
     }
 
-    public function editAction(Request $request, Application $app)
-    {
+    public function editAction(Request $request, Application $app) {
         $classe = $request->attributes->get('classe');
         if (!$classe) {
             $app->abort(404, 'La  classe n\'a pas été trouvé.');
@@ -76,8 +76,7 @@ class AdminCategoryController
         return $app['twig']->render('form.html.twig', $data);
     }
 
-    public function deleteAction(Request $request, Application $app)
-    {
+    public function deleteAction(Request $request, Application $app) {
         $classe = $request->attributes->get('classe');
         if (!$classe) {
             $app->abort(404, 'La classe n\'a pas été trouvé.');

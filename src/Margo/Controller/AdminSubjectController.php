@@ -37,13 +37,18 @@ class AdminSubjectController
         $form = $app['form.factory']->create(new SubjectType(), $subject);
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            if ($form->isValid()) {
+            $name = $subject->getCategory();
+            $category = $app['repository.category']->selectOneByNameCateg($name);
+            if ($form->isValid() && !empty($category)) {
                 $app['repository.subject']->save($subject);
                 $message = 'Le cours ' . $subject->getNameSubject() . ' à été ajouté.';
                 $app['session']->getFlashBag()->add('success', $message);
                 // Redirect to the edit page.
                 $redirect = $app['url_generator']->generate('admin_subject_add', array('subject' => $subject->getIdSubject()));
                 return $app->redirect($redirect);
+            } else {
+                $message = 'La classe inscrite n\'existe pas.';
+                $app['session']->getFlashBag()->add('error', $message);
             }
         }
         $data = array(

@@ -13,11 +13,6 @@ class SubjectType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-        $app = $options["app"];
-
-
-
         $builder
             ->add('nameSubject', 'text', array(
                 'label' => ' ',

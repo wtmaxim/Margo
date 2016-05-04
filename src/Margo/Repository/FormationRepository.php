@@ -104,7 +104,15 @@ class FormationRepository implements RepositoryInterface
         }
         return $formations;
     }
-
+    /*
+     *Retourne une formation qui a pour nom le nom donné en paramètre
+     *       
+     */
+    public function selectOneByNameFormation($nameFormation)
+    {
+        $formation = $this->db->fetchAssoc('SELECT * FROM formation WHERE name = ?', array($nameFormation));
+        return $formation;
+    }
     /**
      * Instantiates an $formation entity and sets its properties using db data.
      *
@@ -120,5 +128,5 @@ class FormationRepository implements RepositoryInterface
         $formation->setNameFormation($formationData['name']);
         return $formation;
     }
-
+    
 }
