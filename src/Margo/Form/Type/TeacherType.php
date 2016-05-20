@@ -32,7 +32,7 @@ class TeacherType extends AbstractType
                 'label' => ' ',
                 'constraints' => new Assert\NotBlank(),
                 'attr' => array(
-                    'placeholder' => 'Classe',
+                    'placeholder' => 'Matière',
                 )
             ))
             ->add('Enregistrer', 'submit');

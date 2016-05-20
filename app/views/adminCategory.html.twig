@@ -19,6 +19,7 @@
         <thead>
         <tr>
             <th> {{ 'Classe' }} </th>
+            <th> {{ 'Formation' }} </th>
             <th> {{ 'Action' }}</th>
         </tr>
         </thead>
@@ -26,6 +27,8 @@
         {% for classe in classes %}
             <tr>
                 <td> {{ classe.categName }} </td>
+                <td> {{ classe.formation.nameFormation }} </td>
+
                 <td>
                     <a href="{{ path('admin_category_delete', {'classe': classe.categName}) }}" class="btn btn-table btn-del">Supprimer</a>
                     <a href="{{ path('admin_category_edit', {'classe': classe.categName}) }}" class="btn btn-table btn-edit">Editer</a>

@@ -15,7 +15,7 @@ class AdminSubjectController
     public function indexAction(Request $request, Application $app)
     {
         // Perform pagination logic.
-        $limit = 10;
+        $limit = 100;
         $total = $app['repository.subject']->getCount();
         $numPages = ceil($total / $limit);
         $currentPage = $request->query->get('page', 1);
@@ -61,16 +61,19 @@ class AdminSubjectController
     public function editAction(Request $request, Application $app)
     {
         $subject = $request->attributes->get('matiere');
-        if (!$subject) {
-            $app->abort(404, 'La requête cours n\'a pas été trouvé.');
-        }
+        
         $form = $app['form.factory']->create(new SubjectType(), $subject);
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            if ($form->isValid()) {
+            $name = $subject->getCategory();
+            $category = $app['repository.category']->selectOneByNameCateg($name);
+            if ($form->isValid()&& !empty($category)) {
                 $app['repository.subject']->save($subject);
                 $message = 'Le cours à été modifié !.';
                 $app['session']->getFlashBag()->add('success', $message);
+            }else {
+                $message = 'La classe inscrite n\'existe pas.';
+                $app['session']->getFlashBag()->add('error', $message);
             }
         }
         $data = array(

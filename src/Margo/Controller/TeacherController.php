@@ -14,7 +14,7 @@ class TeacherController
     public function indexAction(Request $request, Application $app)
     {
         // Perform pagination logic.
-        $limit = 10;
+        $limit = 100;
         $total = $app['repository.prof']->getCount();
         $numPages = ceil($total / $limit);
         $currentPage = $request->query->get('page', 1);

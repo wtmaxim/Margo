@@ -150,6 +150,11 @@ class UserRepository implements RepositoryInterface, UserProviderInterface
         $user = $this->buildUser($usersData[0]);
         return $user;
     }
+    public function selectOneByNameUser($userName)
+    {
+        $user = $this->db->fetchAssoc('SELECT * FROM users WHERE username = ?', array($userName));
+        return $user;
+    }
 
     /**
      * {@inheritDoc}

@@ -52,6 +52,8 @@ class Formation
     {
         $this->idFormation = $idFormation;
     }
-
+    public function __toString() {
+        return $this->nameFormation;
+    }
 
 }
